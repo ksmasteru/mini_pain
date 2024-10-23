@@ -72,3 +72,4 @@ int ft_exit(t_data *data, char *line, t_token *token)
 	free_data_variables(data, 1);
 	exit(code);
 }
+

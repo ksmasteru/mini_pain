@@ -106,16 +106,6 @@ int show_env(t_data *data, int is_export)
 	return (0);
 }
 
-int _export_out(t_data *data, t_token *token, char *line)
-{
-	if (token->up == NULL && (strchr(line, 34) || strchr(line, 39)))
-	{
-		write(2, "minishell: export: `': not a valid identifier\n", 47);
-		return (1);
-	}
-	return (show_env(data, 1));
-}
-
 int export(t_data *data, t_token *token, char *line)
 {
 	t_lst *pair;

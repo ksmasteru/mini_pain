@@ -120,7 +120,7 @@ int	main(int ac, char **av, char **envp)
 		fork_main(&data, envp);
 		free_allocs(&g_allocs);
 	}
-	//rl_clear_history();
+	rl_clear_history();
 	free_data_variables(&data, 0);
 	return (0);
 }

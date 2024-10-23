@@ -85,3 +85,14 @@ char **get_envp(char **env)
 	envp = ft_split(env[i] + 5, 58);
 	return (envp);
 }
+
+int _export_out(t_data *data, t_token *token, char *line)
+{
+	if (token->up == NULL && (strchr(line, 34) || strchr(line, 39)))
+	{
+		write(2, "minishell: export: `': not a valid identifier\n", 47);
+		return (1);
+	}
+	return (show_env(data, 1));
+}
+

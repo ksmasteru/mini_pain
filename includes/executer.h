@@ -91,4 +91,5 @@ int ft_strncmp(char *s1, char *s2, size_t n);
 void	signal_ctlc_heredoc(int sig);
 void	signal_ctlc(int sig);
 void restore_tty(int flag);
+int is_builtin(char *line);
 #endif

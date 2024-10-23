@@ -79,7 +79,6 @@ void	set_data_variables(t_data *data, char **envp)
 void	fork_main(t_data *data, char **envp)
 {
 	int	exit_status;
-
 	exit_status = parse_cmd(data->line, envp, data);
 	data->env_lst->status = exit_status;
 	data->line = NULL;
@@ -120,7 +119,7 @@ int	main(int ac, char **av, char **envp)
 		fork_main(&data, envp);
 		free_allocs(&g_allocs);
 	}
-	rl_clear_history();
+	//rl_clear_history();
 	free_data_variables(&data, 0);
 	return (0);
 }

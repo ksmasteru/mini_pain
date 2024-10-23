@@ -78,7 +78,6 @@ int execute_cmd(int index, int len, t_data *data, t_token *token)
 	char **args;
 	char *cmd;
 	int status;
-
 	data->index = index;
 	set_exec_args(token, data, &args, &cmd);
 	if (index == len - 1 || len == 1)

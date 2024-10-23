@@ -34,6 +34,7 @@ int set_exec_args(t_token *token, t_data *data, char ***args, char **cmd)
 		*args = get_word_args(token);
 		if (!*args)
 			perror("args");
+		
 		*cmd = get_path(data->env, *args[0]);
 	}
 	return (0);

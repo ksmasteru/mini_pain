@@ -30,6 +30,11 @@ char *expand_word(char **str, char *start, t_lst *env_lst,
 	before_word = word_till_dollar(str, start);
 	if (**str == '$' && *(*str + 1) == '?')
 		expanded_word = expand_status_variable(str, env_lst->status);
+	if (**str == '$' && *(*str + 1) == '$')
+	{
+		expanded_word = ft_strdup2("");
+		*str = *str + 2;
+	}
 	else
 		expanded_word = expantion(str, env_lst);
 	whole_word = join_and_free(before_word, expanded_word);

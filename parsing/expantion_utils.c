@@ -71,7 +71,6 @@ char *after_dollar_word(char **str, char *whole_word, t_lst *env_lst, int c)
 {
 	char *before_word;
 	char *expanded_word;
-
 	while (**str != 0 && !(**str >= 9 && **str <= 13) && !(ft_strchr(" \v\t\r|<>", **str)))
 	{
 		if (**str == '$')

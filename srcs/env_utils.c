@@ -15,26 +15,6 @@
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 
-void	ft_putstr(int fd, char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(fd, str + i, 1);
-		i++;
-	}
-}
-
-int	ft_isalpha(int c)
-{
-	if ((c >= 'A' && c <= 'Z')
-		|| (c >= 'a' && c <= 'z'))
-		return (1);
-	return (0);
-}
-
 bool is_nvalid_arg(t_slice *slice)
 {
 	if ((slice->location)[0] == '=' || slice->location[0] == 0 || ((!ft_isalpha(slice->location[0]) && slice->location[0] != '_')))

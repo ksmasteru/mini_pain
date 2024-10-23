@@ -92,4 +92,6 @@ void	signal_ctlc_heredoc(int sig);
 void	signal_ctlc(int sig);
 void restore_tty(int flag);
 int is_builtin(char *line);
+char	*read_cmd(void);
+int	ft_isalpha(int c);
 #endif

@@ -24,44 +24,6 @@ t_alloc	*g_allocs = NULL;
 int		built_in(int op, t_data *data, t_token *token);
 int		unset(t_data *data, t_token *token, char *line);
 
-bool	is_empty(char *line)
-{
-	int	i;
-
-	i = 0;
-	if (line[0] == 0)
-		return (true);
-	while (line[i] && (line[i] == 32 || (line[i] >= 9 && line[i] <= 13)))
-		i++;
-	if (line[i] == 0 || line[i] == '\n')
-		return (true);
-	return (false);
-}
-
-char	*read_cmd(void)
-{
-	char	*line;
-
-	while (1)
-	{
-		line = readline("\e[0;32m[minishell]$ \e[0;0m");
-		if (!line)
-			return (NULL);
-		else if (is_empty(line))
-		{
-			free(line);
-			continue ;
-		}
-		else
-			break ;
-	}
-	if (access(".tmp.txt", F_OK) == 0)
-		unlink(".tmp.txt");
-	add_history(line);
-	alloc_addback(&g_allocs, line);
-	return (line);
-}
-
 void	set_data_variables(t_data *data, char **envp)
 {
 	data->envp = envp;

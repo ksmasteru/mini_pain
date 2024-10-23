@@ -52,8 +52,6 @@ int check_syntax_error(t_token **tokens)
 	t_token *tmp;
 
 	tmp = *tokens;
-	if (*tokens == NULL)
-		return (0);
 	if (tmp->type == PIPE)
 		return (syntax_error(1, tokens, PIPE));
 	else if (tmp->type != WORD && tmp->next == NULL)

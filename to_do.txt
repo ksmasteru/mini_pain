@@ -1,0 +1,12 @@
+check_balanced quotes.
+cat < test # with non-existent test
+ls -la | wc -w > $a : syntax error?
+> $a : was treated as > since $a = NULL;
+ export "test=ici"=coucou
+ exit and cds, norminette again T_T
+ do not add empty strdup to allocs ?
+ cd may have leaks because of the new home path
+case 7amd : cat << fdfd"$a".
+
+cat << "" : hard to handle
+handle signal for mini  + heredoc on mac

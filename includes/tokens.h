@@ -8,6 +8,12 @@
 #include <string.h>
 #include <stdbool.h>
 
+typedef struct  t_mini
+{
+  char *pwd;
+} t_mini;
+t_mini	*mini(void);
+
 typedef enum s_token_type{
     ERROR = 0,
     WORD = 1,
@@ -88,6 +94,7 @@ typedef struct s_data{
     char **envp;
     char **env; 
     char **av;
+    char *pwd;
 }t_data;
 
 t_token *make_new_node(t_token_type type, char *start, size_t length);

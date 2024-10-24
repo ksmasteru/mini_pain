@@ -32,6 +32,18 @@ void free_2d_str(char **str)
 	free(str);
 }
 
+int init_check_main_cmd(t_data *data, t_token *token)
+{
+	if (token->type == WORD)
+		data->flag = manage_redirections(token->down, data);
+	else if (token->type == REIDRECTION)
+		data->flag = manage_redirections(token, data);
+	if (data->flag == -1 || data->words_count != 1)
+		close_and_dup2(data->fdx, data->index, data->words_count,
+			data->flag);
+	return (0);
+}
+
 int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 {
 	int status;
@@ -42,13 +54,7 @@ int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		if (token->type == WORD)
-			data->flag = manage_redirections(token->down, data);
-		else if (token->type == REIDRECTION)
-			data->flag = manage_redirections(token, data);
-		if (data->flag == -1 || data->words_count != 1)
-			close_and_dup2(data->fdx, data->index, data->words_count,
-						   data->flag);
+		init_check_main_cmd(data, token);
 		if (built_in_code(cmd) != 0)
 			exit (check_builtin_multiple(cmd, data, token, built_in_code(cmd)));
 		execve(cmd, args, data->envp);

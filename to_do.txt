@@ -6,7 +6,10 @@ ls -la | wc -w > $a : syntax error?
  exit and cds, norminette again T_T
  do not add empty strdup to allocs ?
  cd may have leaks because of the new home path
-case 7amd : cat << fdfd"$a".
 
 cat << "" : hard to handle
 handle signal for mini  + heredoc on mac
+
+$a : shouldnt be cmmd not found but "" should ..
+if you put $a to null then there will be a problem in > $a
+

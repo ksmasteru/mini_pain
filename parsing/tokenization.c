@@ -75,7 +75,7 @@ t_token *lexer(char *str, t_lst *env_lst)
 		}
 		if ((ft_strchr(str, 34) || ft_strchr(str, 39)) && (check_balanced_quotes(str) != 0))
 		{
-			printf("quotes error detected by word lexer!\n");
+			ft_putstr_fd(2, "Error: quotes aren't balanced\n");
 			return (NULL);
 		}
 		if (words_lexer(&head, &str, start, env_lst) < 0)

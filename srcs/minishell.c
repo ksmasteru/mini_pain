@@ -24,6 +24,12 @@ t_alloc	*g_allocs = NULL;
 int		built_in(int op, t_data *data, t_token *token);
 int		unset(t_data *data, t_token *token, char *line);
 
+t_mini	*mini(void)
+{
+	static t_mini var;
+	return &var;
+}
+
 void	set_data_variables(t_data *data, char **envp)
 {
 	data->envp = envp;
@@ -36,6 +42,7 @@ void	set_data_variables(t_data *data, char **envp)
 	data->mem_ref = NULL;
 	data->line = NULL;
 	data->allocs = NULL;
+	data->pwd = NULL;
 }
 
 void	fork_main(t_data *data, char **envp)

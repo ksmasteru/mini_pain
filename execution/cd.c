@@ -15,16 +15,17 @@
 #include "../includes/tokens.h"
 #include <dirent.h>
 #include <sys/types.h>
+#include <limits.h>
 
 void update_pwd(t_data *data)
 {
-	t_lst *pair;
-	char *wd;
-
-	wd = getcwd(0, 0);
+	t_lst	*pair;
+	char	wd[PATH_MAX];
+	
+	if (getcwd(wd, PATH_MAX))
+		data->pwd = wd;
 	pair = new_list("PWD", 4);
-	pair->value = new_list(wd, ft_strlen(wd));
-	free(wd);
+	pair->value = new_list(data->pwd, ft_strlen(data->pwd));
 	add_val_to_env(pair, data);
 }
 
@@ -34,7 +35,6 @@ void update_oldpwd(char *oldpwd, t_data *data)
 
 	pair = new_list("OLDPWD", 7);
 	pair->value = new_list(oldpwd, ft_strlen(oldpwd));
-	free(oldpwd);
 	add_val_to_env(pair, data);
 }
 
@@ -59,12 +59,11 @@ char *get_cd_path(char *path, t_data *data, t_token *tokens)
 int cd(char *path, t_data *data, t_token *tokens)
 {
 	char *home;
-	char *oldpwd;
 
 	path = get_cd_path(path, data, tokens);
-	oldpwd = getcwd(0, 0);
 	home = get_home_path(data);
-	if (is_empty(path + 2) || is_special(path + 2))
+	if ((tokens->up && tokens->up->location.location[0] == 0)
+		 || is_empty(path + 2) || is_special(path + 2))
 	{
 		if (!home || chdir(home) < 0)
 			return (cd_error(home, tokens));
@@ -81,8 +80,7 @@ int cd(char *path, t_data *data, t_token *tokens)
 		if (chdir(tokens->up->location.location) < 0)
 			return (cd_error(path + 2, tokens));
 	}
-	update_path_var(data, oldpwd);
-	return (0);
+	return (update_path_var(data));
 }
 
 int cd_error(char *path, t_token *tokens)

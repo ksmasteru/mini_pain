@@ -34,7 +34,6 @@ int set_exec_args(t_token *token, t_data *data, char ***args, char **cmd)
 		*args = get_word_args(token);
 		if (!*args)
 			perror("args");
-		
 		*cmd = get_path(data->env, *args[0]);
 	}
 	return (0);
@@ -99,7 +98,7 @@ int check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 	if (n == 3)
 		data->env_lst->status = show_env(data, 0);
 	if (n == 4)
-		data->env_lst->status = pwd(line, token);
+		data->env_lst->status = pwd(line, token, data);
 	if (n == 5)
 		data->env_lst->status = cd(line, data, token);
 	if (n == 6)

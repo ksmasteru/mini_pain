@@ -42,7 +42,7 @@ int	built_in_code2(char *line)
 
 int	built_in_code(char *line)
 {
-	if (!line || line[0] == 0)
+	if (!line)/*was || line[0] == 0*/
 		exit(0);
 	if (ft_strlen(line) >= 6)
 	{
@@ -77,7 +77,7 @@ void	dispatach_builtin(int n, t_data *data, char *line)
 	if (n == 3)
 		data->env_lst->status = show_env(data, 0);
 	if (n == 4)
-		data->env_lst->status = pwd(line, data->tokens);
+		data->env_lst->status = pwd(line, data->tokens, data);
 	if (n == 5)
 		data->env_lst->status = cd(line, data, data->tokens);
 	if (n == 6)

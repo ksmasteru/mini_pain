@@ -15,6 +15,7 @@
 #include "../includes/tokens.h"
 #include <dirent.h>
 #include <sys/types.h>
+#include <limits.h>
 
 int ft_strlen(char *s1)
 {
@@ -74,8 +75,13 @@ bool is_special(char *path)
 	return (false);
 }
 
-void update_path_var(t_data *data, char *oldpwd)
+int update_path_var(t_data *data)
 {
+	char oldpwd[PATH_MAX];
+
+	if (!getcwd(oldpwd, PATH_MAX))
+		return (perror("minishell: cd: "), 1);
 	update_pwd(data);
 	update_oldpwd(oldpwd, data);
+	return (0);
 }

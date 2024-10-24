@@ -25,6 +25,7 @@ char *expand_word(char **str, char *start, t_lst *env_lst,
 	char *expanded_word;
 	char *whole_word;
 
+	expanded_word = NULL;
 	(void)closing_quotes;
 	whole_word = NULL;
 	before_word = word_till_dollar(str, start);
@@ -32,8 +33,8 @@ char *expand_word(char **str, char *start, t_lst *env_lst,
 		expanded_word = expand_status_variable(str, env_lst->status);
 	else if (**str == '$' && *(*str + 1) == '$')
 	{
-		expanded_word = ft_strdup2("");
 		*str = *str + 2;
+		return (ft_strjoin(before_word, ft_strdup2("")));
 	}
 	else
 		expanded_word = expantion(str, env_lst);

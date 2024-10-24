@@ -1,6 +1,6 @@
 NAME = minishell
 CC = cc
-CFLAGS = -g -fsanitize=address -Wall -Werror -Wextra
+CFLAGS = -g3 #-Wall -Werror -Wextra
 
 SRCS = srcs/minishell.c parsing/tokenization.c parsing/tokens_v2.c execution/run_cmd.c execution/get_paths.c srcs/str_utils.c \
 		parsing/ft_split.c execution/here_doc.c execution/get_envp.c execution/cd.c execution/exit.c execution/cd_utils.c  execution/exec_utils.c parsing/tokenization_utils.c\

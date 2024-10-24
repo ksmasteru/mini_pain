@@ -18,11 +18,18 @@
 #include "sys/wait.h"
 #include <stdbool.h>
 
+t_mini	*mini(void)
+{
+	static t_mini var;
+	return &var;
+}
+
 int		allocated = 0;
 int		freed = 0;
 t_alloc	*g_allocs = NULL;
 int		built_in(int op, t_data *data, t_token *token);
 int		unset(t_data *data, t_token *token, char *line);
+
 
 bool	is_empty(char *line)
 {
@@ -74,6 +81,7 @@ void	set_data_variables(t_data *data, char **envp)
 	data->mem_ref = NULL;
 	data->line = NULL;
 	data->allocs = NULL;
+	data->pwd = NULL;
 }
 
 void	fork_main(t_data *data, char **envp)

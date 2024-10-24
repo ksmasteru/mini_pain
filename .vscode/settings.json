@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "executer.h": "c",
+        "parser.h": "c",
+        "minishell.h": "c",
+        "wait.h": "c",
+        "pipes.h": "c",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "tokens.h": "c"
+    }
+}

@@ -88,6 +88,7 @@ typedef struct s_data{
     char **envp;
     char **env; 
     char **av;
+    char *pwd;
 }t_data;
 
 t_token *make_new_node(t_token_type type, char *start, size_t length);

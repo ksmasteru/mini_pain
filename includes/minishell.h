@@ -18,6 +18,13 @@ typedef struct s_gc
 	struct s_gc	*next;
 }				t_gc;
 
+typedef struct  t_mini
+{
+  char *pwd;
+} t_mini;
+
+t_mini	*mini(void);
+
 typedef struct s_lst
 {
   int status;

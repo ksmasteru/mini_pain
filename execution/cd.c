@@ -17,11 +17,11 @@
 #include <sys/types.h>
 #include <limits.h>
 
-void update_pwd(t_data *data)
+void	update_pwd(t_data *data)
 {
 	t_lst	*pair;
 	char	wd[PATH_MAX];
-	
+
 	if (getcwd(wd, PATH_MAX))
 		data->pwd = wd;
 	pair = new_list("PWD", 4);
@@ -29,18 +29,19 @@ void update_pwd(t_data *data)
 	add_val_to_env(pair, data);
 }
 
-void update_oldpwd(char *oldpwd, t_data *data)
+void	update_oldpwd(char *oldpwd, t_data *data)
 {
-	t_lst *pair;
+	t_lst	*pair;
 
 	pair = new_list("OLDPWD", 7);
 	pair->value = new_list(oldpwd, ft_strlen(oldpwd));
 	add_val_to_env(pair, data);
 }
 
-char *get_cd_path(char *path, t_data *data, t_token *tokens)
+char	*get_cd_path(char *path, t_data *data, t_token *tokens)
 {
-	char *whole_path;
+	char	*whole_path;
+
 	if (data->words_count == 1)
 		return (path);
 	tokens = tokens->up;
@@ -56,14 +57,14 @@ char *get_cd_path(char *path, t_data *data, t_token *tokens)
 	return (whole_path);
 }
 
-int cd(char *path, t_data *data, t_token *tokens)
+int	cd(char *path, t_data *data, t_token *tokens)
 {
-	char *home;
+	char	*home;
 
 	path = get_cd_path(path, data, tokens);
 	home = get_home_path(data);
 	if ((tokens->up && tokens->up->location.location[0] == 0)
-		 || is_empty(path + 2) || is_special(path + 2))
+		|| is_empty(path + 2) || is_special(path + 2))
 	{
 		if (!home || chdir(home) < 0)
 			return (cd_error(home, tokens));
@@ -83,9 +84,9 @@ int cd(char *path, t_data *data, t_token *tokens)
 	return (update_path_var(data));
 }
 
-int cd_error(char *path, t_token *tokens)
+int	cd_error(char *path, t_token *tokens)
 {
-	int i;
+	int	i;
 
 	(void)(tokens);
 	i = 0;

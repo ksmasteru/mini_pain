@@ -17,9 +17,9 @@
 #include <sys/types.h>
 #include <limits.h>
 
-int ft_strlen(char *s1)
+int	ft_strlen(char *s1)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s1)
@@ -29,10 +29,10 @@ int ft_strlen(char *s1)
 	return (i);
 }
 
-char *get_home_path(t_data *data)
+char	*get_home_path(t_data *data)
 {
-	t_lst *tmp;
-	int found;
+	t_lst	*tmp;
+	int	found;
 
 	tmp = data->env_lst;
 	found = 0;
@@ -41,7 +41,7 @@ char *get_home_path(t_data *data)
 		if (strcmp(tmp->data, "HOME") == 0)
 		{
 			found = 1;
-			break;
+			break ;
 		}
 		tmp = tmp->next;
 	}
@@ -54,10 +54,10 @@ char *get_home_path(t_data *data)
 	}
 }
 
-bool is_special(char *path)
+bool	is_special(char *path)
 {
-	int i;
-	bool found;
+	int	i;
+	bool	found;
 
 	found = false;
 	i = 0;
@@ -75,9 +75,9 @@ bool is_special(char *path)
 	return (false);
 }
 
-int update_path_var(t_data *data)
+int	update_path_var(t_data *data)
 {
-	char oldpwd[PATH_MAX];
+	char	oldpwd[PATH_MAX];
 
 	if (!getcwd(oldpwd, PATH_MAX))
 		return (perror("minishell: cd: "), 1);

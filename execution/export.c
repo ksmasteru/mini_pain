@@ -89,18 +89,13 @@ int show_env(t_data *data, int is_export)
 	tmp = data->env_lst;
 	while (tmp)
 	{
-		ft_putstr(1, tmp->data);
 		if (tmp->value)
-			write(1, "=", 1);
-		else
 		{
-			write(1, "\n", 2);
-			tmp = tmp->next;
-			continue;
-		}
-		if (tmp->value)
+			ft_putstr(1, tmp->data);
+			write(1, "=", 1);
 			ft_putstr(1, tmp->value->data);
-		write(1, "\n", 2);
+			write(1, "\n", 2);
+		}
 		tmp = tmp->next;
 	}
 	return (0);

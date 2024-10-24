@@ -86,7 +86,7 @@ bool check_echo_n(t_token **tmp)
 	while (*tmp)
 	{
 		i = 1;
-		if ((*tmp)->location.location[0] == '-')
+		if ((*tmp)->location.lenght >= 2 && (*tmp)->location.location[0] == '-')
 		{
 			while (i < (*tmp)->location.lenght)
 			{

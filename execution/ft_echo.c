@@ -15,16 +15,20 @@
 
 void ft_echo(t_token *tmp, bool n)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	if (!tmp)
 		return;
-	while (i < tmp->location.lenght)
+	if (tmp->location.location[0] != 0)
+		tmp->location.location[tmp->location.lenght] = 0;
+	while (i < ft_strlen(tmp->location.location))
 	{
 		write(1, tmp->location.location + i, 1);
 		i++;
 	}
+	if (tmp->location.location[0] != 0 && tmp->up && tmp->up->location.location[0] != 0)
+		write(1, " ", 1);
 	if (!n && !tmp->up)
 		write(1, "\n", 1);
 }
@@ -66,8 +70,6 @@ int ft_echo2(t_data *data, char *line, t_token *token)
 		{
 			ft_echo(tmp, n);
 			tmp = tmp->up;
-			if (tmp)
-				write(1, " ", 1);
 		}
 	}
 	if (data->flag == 0 || data->flag == 1)

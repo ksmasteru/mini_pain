@@ -13,3 +13,4 @@ handle signal for mini  + heredoc on mac
 $a : shouldnt be cmmd not found but "" should ..
 if you put $a to null then there will be a problem in > $a
 
+ echo $$PWD ; spaces ????

@@ -21,16 +21,6 @@
 
 extern t_alloc	*g_allocs;
 
-void	free_2d_str(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		free(str[i++]);
-	free(str[i]);
-	free(str);
-}
 
 int init_check_main_cmd(t_data *data, t_token *token)
 {
@@ -62,32 +52,27 @@ int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 		status = init_check_main_cmd(data, token);
 		if (built_in_code(cmd) != 0)
 			exit (check_builtin_multiple(cmd, data, token, built_in_code(cmd)));
-		if (status == 0)
-			execve(cmd, args, data->envp);
-		if (errno == ENOENT)
-		{
-			print_cmd_nfound(cmd);
-			status = 127;
-		}
-		else
-		{
-			status = 126;
-			print_error_errno("minishell", cmd, NULL);
-		}
-		free_data_variables(data, 1);
-		exit(status);
+		_exec_cmd(status, cmd, args, data);
 	}
 	return (0);
 }
 
-void	free_exec_args(char **args, char *cmd, t_tree *head)
+void _exec_cmd(int status, char *cmd, char **args, t_data *data)
 {
-	if (args)
-		free_2d_str(args);
-	if (cmd)
-		free(cmd);
-	if (head)
-		free(head);
+	if (status == 0)
+		execve(cmd, args, data->envp);
+	if (errno == ENOENT)
+	{
+		print_cmd_nfound(cmd);
+		status = 127;
+	}
+	else
+	{
+		status = 126;
+		print_error_errno("minishell", cmd, NULL);
+	}
+	free_data_variables(data, 1);
+	exit(status);
 }
 
 int execute_cmd(int index, int len, t_data *data, t_token *token)
@@ -107,20 +92,7 @@ int execute_cmd(int index, int len, t_data *data, t_token *token)
 		status = init_exec_check(token, data, index);
 		if (built_in_code(cmd) != 0)
 			exit (check_builtin_multiple(cmd, data, token,built_in_code(cmd)));
-		if (status == 0)
-			execve(cmd, args, data->envp);
-		if (errno == ENOENT)
-		{
-			print_cmd_nfound(cmd);
-			status = 127;
-		}
-		else
-		{
-			status = 126;
-			print_error_errno("minishell", cmd, NULL);
-		}
-		free_data_variables(data, 1);
-		exit(status);
+		_exec_cmd(status, cmd, args, data);
 	}
 	return (0);
 }

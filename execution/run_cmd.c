@@ -38,10 +38,22 @@ int init_check_main_cmd(t_data *data, t_token *token)
 		data->flag = manage_redirections(token->down, data);
 	else if (token->type == REIDRECTION)
 		data->flag = manage_redirections(token, data);
-	if (data->flag == -1 || data->words_count != 1)
+	if (data->is_cmd == - 1)
+	{
+		close_all_pipes(data->fdx, data->words_count);
+		return (127);
+	}
+	else if (data->flag == -1 || data->words_count != 1)
 		close_and_dup2(data->fdx, data->index, data->words_count,
 			data->flag);
 	return (0);
+}
+
+void	print_cmd_nfound(char *cmd)
+{
+	ft_putstr_fd(2, "minishell: ");
+	ft_putstr_fd(2, cmd);
+	ft_putstr_fd(2, ": command not found\n");
 }
 
 int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
@@ -54,15 +66,21 @@ int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		init_check_main_cmd(data, token);
+		status = init_check_main_cmd(data, token);
 		if (built_in_code(cmd) != 0)
 			exit (check_builtin_multiple(cmd, data, token, built_in_code(cmd)));
-		execve(cmd, args, data->envp);
+		if (status == 0)
+			execve(cmd, args, data->envp);
 		if (errno == ENOENT)
+		{
+			print_cmd_nfound(cmd);
 			status = 127;
+		}
 		else
+		{
 			status = 126;
-		print_error_errno("minishell", cmd, NULL);
+			print_error_errno("minishell", cmd, NULL);
+		}
 		free_data_variables(data, 1);
 		exit(status);
 	}
@@ -93,15 +111,21 @@ int execute_cmd(int index, int len, t_data *data, t_token *token)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		init_exec_check(token, data, index);
+		status = init_exec_check(token, data, index);
 		if (built_in_code(cmd) != 0)
 			exit (check_builtin_multiple(cmd, data, token,built_in_code(cmd)));
-		execve(cmd, args, data->envp);
+		if (status == 0)
+			execve(cmd, args, data->envp);
 		if (errno == ENOENT)
+		{
+			print_cmd_nfound(cmd);
 			status = 127;
+		}
 		else
+		{
 			status = 126;
-		print_error_errno("minishell", cmd, NULL);
+			print_error_errno("minishell", cmd, NULL);
+		}
 		free_data_variables(data, 1);
 		exit(status);
 	}

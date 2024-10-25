@@ -24,6 +24,7 @@ extern t_alloc *g_allocs;
 int set_exec_args(t_token *token, t_data *data, char ***args, char **cmd)
 {
 	data->flag = 0;
+	data->is_cmd = 0;
 	if (token->type == REIDRECTION)
 	{
 		*args = NULL;
@@ -35,6 +36,8 @@ int set_exec_args(t_token *token, t_data *data, char ***args, char **cmd)
 		if (!*args)
 			perror("args");
 		*cmd = get_path(data->env, *args[0]);
+		if (*cmd && is_builtin(*cmd) == 0 && !ft_strchr(*cmd, '/'))
+			data->is_cmd = -1;
 	}
 	return (0);
 }
@@ -45,6 +48,11 @@ int init_exec_check(t_token *head, t_data *data, int index)
 		data->flag = manage_redirections(head->down, data);
 	else if (head->type == REIDRECTION)
 		data->flag = manage_redirections(head->down, data);
+	if (data->is_cmd == - 1)
+	{
+		close_all_pipes(data->fdx, data->words_count);
+		return (127);
+	}
 	close_and_dup2(data->fdx, index, data->words_count, data->flag);
 	return (0);
 }

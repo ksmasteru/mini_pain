@@ -95,6 +95,7 @@ typedef struct s_data{
     char **env; 
     char **av;
     char *pwd;
+    int is_cmd;
 }t_data;
 
 t_token *make_new_node(t_token_type type, char *start, size_t length);

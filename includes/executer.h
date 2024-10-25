@@ -95,4 +95,5 @@ int is_builtin(char *line);
 char	*read_cmd(void);
 int	ft_isalpha(int c);
 int init_check_main_cmd(t_data *data, t_token *token);
+void	print_cmd_nfound(char *cmd);
 #endif

@@ -43,6 +43,7 @@ void	set_data_variables(t_data *data, char **envp)
 	data->line = NULL;
 	data->allocs = NULL;
 	data->pwd = NULL;
+	data->is_cmd = 0;
 }
 
 void	fork_main(t_data *data, char **envp)

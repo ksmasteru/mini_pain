@@ -75,7 +75,8 @@ void	ft_lstdelete(t_lst **head, t_lst *to_delete)
 int	unset(t_data *data, t_token *token, char *line)
 {
 	t_lst	*tmp;
-	int code;
+	int		code;
+
 	(void)line;
 	if (token->up == NULL)
 		return (0);
@@ -84,7 +85,7 @@ int	unset(t_data *data, t_token *token, char *line)
 	while (token)
 	{
 		code = 0;
-		if (token->location.location[0] == 0  || not_valid_variable(token))
+		if (token->location.location[0] == 0 || not_valid_variable(token))
 			code = unset_error(token);
 		while (tmp && code != 1)
 		{

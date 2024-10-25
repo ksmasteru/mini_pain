@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:20:13 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:20:15 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 00:23:09 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 #include <dirent.h>
-#include <sys/types.h>
 #include <limits.h>
+#include <sys/types.h>
 
 int	ft_strlen(char *s1)
 {
@@ -32,7 +32,7 @@ int	ft_strlen(char *s1)
 char	*get_home_path(t_data *data)
 {
 	t_lst	*tmp;
-	int	found;
+	int		found;
 
 	tmp = data->env_lst;
 	found = 0;
@@ -56,8 +56,8 @@ char	*get_home_path(t_data *data)
 
 bool	is_special(char *path)
 {
-	int	i;
 	bool	found;
+	int		i;
 
 	found = false;
 	i = 0;

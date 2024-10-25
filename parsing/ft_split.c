@@ -13,12 +13,12 @@
 #include "../includes/executer.h"
 #include "../includes/tokens.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-int count_words(char *cmd, char sep)
+int	count_words(char *cmd, char sep)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	count = 0;
 	i = 0;
@@ -36,10 +36,10 @@ int count_words(char *cmd, char sep)
 	return (count);
 }
 
-char *make_words(char *str, char sep)
+char	*make_words(char *str, char sep)
 {
-	int i;
-	char *res;
+	int		i;
+	char	*res;
 
 	i = 0;
 	while (str[i] != sep && str[i] != '\0')
@@ -57,12 +57,12 @@ char *make_words(char *str, char sep)
 	return (res);
 }
 
-char **ft_split(char *cmd, char sep)
+char	**ft_split(char *cmd, char sep)
 {
-	int words_count;
-	char **args;
-	int i;
-	int x;
+	int		words_count;
+	char	**args;
+	int		i;
+	int		x;
 
 	i = 0;
 	x = 0;
@@ -85,9 +85,9 @@ char **ft_split(char *cmd, char sep)
 	return (args);
 }
 
-void free_splited(char ***res, int i)
+void	free_splited(char ***res, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (j < i)
@@ -95,10 +95,10 @@ void free_splited(char ***res, int i)
 	free(res);
 }
 
-char ***split_all(int ac, char **av)
+char	***split_all(int ac, char **av)
 {
-	char ***res;
-	int i;
+	char	***res;
+	int		i;
 
 	i = 0;
 	res = (char ***)malloc(sizeof(char **) * (ac + 1));

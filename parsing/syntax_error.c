@@ -6,14 +6,14 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:16:35 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/13 22:16:44 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:27:15 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 
-void write_token(int type)
+void	write_token(int type)
 {
 	if (type == PAREN_L)
 		write(2, "\'(\'\n", 5);
@@ -29,7 +29,7 @@ void write_token(int type)
 		write(2, "\'&\'\n", 5);
 }
 
-int syntax_error(int code, t_token **tokens, int type)
+int	syntax_error(int code, t_token **tokens, int type)
 {
 	(void)tokens;
 	(void)type;
@@ -47,9 +47,9 @@ int syntax_error(int code, t_token **tokens, int type)
 	return (-1);
 }
 
-int check_syntax_error(t_token **tokens)
+int	check_syntax_error(t_token **tokens)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = *tokens;
 	if (tmp->type == PIPE)
@@ -61,7 +61,7 @@ int check_syntax_error(t_token **tokens)
 		if (tmp->type == PIPE)
 		{
 			if (tmp->next->type == PIPE)
-				return (syntax_error(2, tokens, tmp->type)); // meh
+				return (syntax_error(2, tokens, tmp->type));
 		}
 		if (tmp->type >= 6 && tmp->type <= 9)
 		{
@@ -75,20 +75,20 @@ int check_syntax_error(t_token **tokens)
 	return (0);
 }
 
-void ft_list_addback(t_token **head, t_token *new)
+void	ft_list_addback(t_token **head, t_token *new)
 {
-	t_token *tmp;
-	t_token *new_next;
+	t_token	*tmp;
+	t_token	*new_next;
 
 	if (new != NULL)
 		new_next = new->next;
 	tmp = *head;
 	if (!new)
-		return;
+		return ;
 	if (!tmp)
 	{
 		*head = new;
-		return;
+		return ;
 	}
 	while (tmp->next)
 		tmp = tmp->next;
@@ -96,9 +96,9 @@ void ft_list_addback(t_token **head, t_token *new)
 	tmp->next->next = new_next;
 }
 
-void free_lst(t_token *tokens)
+void	free_lst(t_token *tokens)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = tokens;
 	while (tokens)

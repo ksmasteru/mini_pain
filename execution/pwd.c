@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:49:19 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:49:21 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:18:26 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 #include <dirent.h>
-#include <sys/types.h>
 #include <limits.h>
+#include <sys/types.h>
 
 void	handle_error(t_data *data)
 {
@@ -26,7 +26,6 @@ void	handle_error(t_data *data)
 	}
 	printf("%s\n", data->pwd);
 }
-
 
 int	pwd(char *cmd, t_token *tokens, t_data *data)
 {

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static	int	ft_putunsigned(unsigned int n)
+static int	ft_putunsigned(unsigned int n)
 {
 	int	printed;
 
@@ -26,7 +26,7 @@ static	int	ft_putunsigned(unsigned int n)
 	return (printed);
 }
 
-static	int	ft_check_format_and_put(char type, va_list args)
+static int	ft_check_format_and_put(char type, va_list args)
 {
 	int	printed;
 

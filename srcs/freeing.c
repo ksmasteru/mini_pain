@@ -25,7 +25,7 @@ void	free_data_variables(t_data *data, int flag)
 	t_lst	*tmp;
 	t_lst	*holder;
 	int		i;
-	int status;
+	int		status;
 
 	status = data->env_lst->status;
 	i = 0;

@@ -33,9 +33,9 @@ void ft_echo(t_token *tmp, bool n)
 		write(1, "\n", 1);
 }
 
-void restore_tty(int flag)
+void	restore_tty(int flag)
 {
-	int fd;
+	int	fd;
 
 	if (flag == 0)
 	{
@@ -53,10 +53,10 @@ void restore_tty(int flag)
 	}
 }
 
-int ft_echo2(t_data *data, char *line, t_token *token)
+int	ft_echo2(t_data *data, char *line, t_token *token)
 {
-	t_token *tmp;
-	bool n;
+	t_token	*tmp;
+	bool	n;
 
 	(void)line;
 	tmp = token->up;
@@ -77,10 +77,10 @@ int ft_echo2(t_data *data, char *line, t_token *token)
 	return (0);
 }
 
-bool check_echo_n(t_token **tmp)
+bool	check_echo_n(t_token **tmp)
 {
-	size_t i;
-	bool value;
+	size_t	i;
+	bool	value;
 
 	value = false;
 	if (!(*tmp))

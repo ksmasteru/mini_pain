@@ -14,8 +14,8 @@
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 #include <dirent.h>
-#include <sys/types.h>
 #include <limits.h>
+#include <sys/types.h>
 
 void	update_pwd(t_data *data)
 {
@@ -63,8 +63,8 @@ int	cd(char *path, t_data *data, t_token *tokens)
 
 	path = get_cd_path(path, data, tokens);
 	home = get_home_path(data);
-	if ((tokens->up && tokens->up->location.location[0] == 0)
-		|| is_empty(path + 2) || is_special(path + 2))
+	if ((tokens->up && tokens->up->location.location[0] == 0) || is_empty(path
+			+ 2) || is_special(path + 2))
 	{
 		if (!home || chdir(home) < 0)
 			return (cd_error(home, tokens));

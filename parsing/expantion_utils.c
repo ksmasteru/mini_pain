@@ -16,11 +16,11 @@
 #include "../includes/tokens.h"
 #include "math.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-static int int_len(long n)
+static int	int_len(long n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n == 0)
@@ -38,12 +38,12 @@ static int int_len(long n)
 	return (count);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	long number;
-	int len;
-	char *res;
-	int i;
+	long	number;
+	int		len;
+	char	*res;
+	int		i;
 
 	number = n;
 	len = int_len(number);
@@ -67,16 +67,18 @@ char *ft_itoa(int n)
 	return (res);
 }
 
-char *after_dollar_word(char **str, char *whole_word, t_lst *env_lst, int c)
+char	*after_dollar_word(char **str, char *whole_word, t_lst *env_lst, int c)
 {
-	char *before_word;
-	char *expanded_word;
-	while (**str != 0 && !(**str >= 9 && **str <= 13) && !(ft_strchr(" \v\t\r|<>", **str)))
+	char	*before_word;
+	char	*expanded_word;
+
+	while (**str != 0 && !(**str >= 9 && **str <= 13)
+		&& !(ft_strchr(" \v\t\r|<>", **str)))
 	{
 		if (**str == '$')
 		{
 			whole_word = join_and_free(whole_word, expantion(str, env_lst));
-			continue;
+			continue ;
 		}
 		if (**str == 34 || **str == 39)
 		{
@@ -87,22 +89,23 @@ char *after_dollar_word(char **str, char *whole_word, t_lst *env_lst, int c)
 			else
 				expanded_word = before_word;
 			whole_word = join_and_free(whole_word, expanded_word);
-			continue;
+			continue ;
 		}
 		*str = *str + 1;
 	}
 	return (whole_word);
 }
 
-char *expand_status_variable(char **str, int status)
+char	*expand_status_variable(char **str, int status)
 {
-	char *word;
-	int i;
-	char c;
+	char	*word;
+	int		i;
+	char	c;
 
 	i = 0;
 	*str = *str + 2;
-	while (*(*str + i) != 0 && *(*str + i) != '$' && *(*str + i) != 34 && *(*str + i) != 39 && !(*(*str + i) >= 9 && *(*str + i) <= 13))
+	while (*(*str + i) != 0 && *(*str + i) != '$' && *(*str + i) != 34 && *(*str
+			+ i) != 39 && !(*(*str + i) >= 9 && *(*str + i) <= 13))
 		i++;
 	if (i == 0)
 		return (ft_itoa(status));
@@ -113,17 +116,16 @@ char *expand_status_variable(char **str, int status)
 	return (word);
 }
 
-char *expand_qt_word(char *word, t_lst *env_lst)
+char	*expand_qt_word(char *word, t_lst *env_lst)
 {
-	char *expanded_word;
-	int i;
-	char *buffer;
-	char *start;
-	char *tmp_word;
+	char	*expanded_word;
+	int		i;
+	char	*buffer;
+	char	*start;
+	char	*tmp_word;
 
 	buffer = NULL;
 	i = 0;
-
 	if (word[i] == 34 || word[i] == 39)
 		buffer = get_quotes_buffer(word);
 	while (*word && (*word == 34 || *word == 39))

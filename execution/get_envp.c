@@ -12,11 +12,11 @@
 
 #include "../includes/executer.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-int ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (s1[i] == s2[i] && s1[i] != '\0')
@@ -33,9 +33,9 @@ int ft_strcmp(char *s1, char *s2)
 	}
 }
 
-int ft_strncmp(char *s1, char *s2, size_t n)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (n <= 0 || (s1[i] == '\0' && s2[i] == '\0'))
@@ -49,9 +49,9 @@ int ft_strncmp(char *s1, char *s2, size_t n)
 	return (0);
 }
 
-int ft_strncmp_n(char *str, char *str2)
+int	ft_strncmp_n(char *str, char *str2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] && str[i] != '\n' && str2[i])
@@ -65,16 +65,16 @@ int ft_strncmp_n(char *str, char *str2)
 	return (-1);
 }
 
-char **get_envp(char **env)
+char	**get_envp(char **env)
 {
-	int i;
-	char **envp;
+	int		i;
+	char	**envp;
 
 	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH", 4) == 0)
-			break;
+			break ;
 		i++;
 	}
 	if (env[i] == NULL)
@@ -86,7 +86,7 @@ char **get_envp(char **env)
 	return (envp);
 }
 
-int _export_out(t_data *data, t_token *token, char *line)
+int	_export_out(t_data *data, t_token *token, char *line)
 {
 	if (token->up == NULL && (strchr(line, 34) || strchr(line, 39)))
 	{
@@ -95,4 +95,3 @@ int _export_out(t_data *data, t_token *token, char *line)
 	}
 	return (show_env(data, 1));
 }
-

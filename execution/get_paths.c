@@ -12,9 +12,9 @@
 
 #include "../includes/executer.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-int is_builtin(char *line)
+int	is_builtin(char *line)
 {
 	if (ft_strlen(line) >= 6)
 	{
@@ -40,10 +40,10 @@ int is_builtin(char *line)
 	return (built_in_code2(line));
 }
 
-char **get_paths(int ac, char ***ultimate, char **envp)
+char	**get_paths(int ac, char ***ultimate, char **envp)
 {
-	int i;
-	char **res;
+	int		i;
+	char	**res;
 
 	i = 0;
 	res = (char **)malloc(sizeof(char *) * (ac + 1));
@@ -59,11 +59,11 @@ char **get_paths(int ac, char ***ultimate, char **envp)
 	return (res);
 }
 
-char *get_path(char **paths, char *cmd)
+char	*get_path(char **paths, char *cmd)
 {
-	int i;
-	char *cmd_path;
-	char *path_jnd;
+	int		i;
+	char	*cmd_path;
+	char	*path_jnd;
 
 	i = 0;
 	if (is_builtin(cmd) != 0)

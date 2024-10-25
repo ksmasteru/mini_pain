@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:23:00 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/13 22:23:52 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:30:14 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 
-bool is_nvalid_arg(t_slice *slice)
+bool	is_nvalid_arg(t_slice *slice)
 {
-	if ((slice->location)[0] == '=' || slice->location[0] == 0 || ((!ft_isalpha(slice->location[0]) && slice->location[0] != '_')))
-	 	return (true);
+	if ((slice->location)[0] == '=' || slice->location[0] == 0
+		|| ((!ft_isalpha(slice->location[0]) && slice->location[0] != '_')))
+		return (true);
 	return (false);
 }
+
 int	find_key(t_slice *slice)
 {
 	int	i;

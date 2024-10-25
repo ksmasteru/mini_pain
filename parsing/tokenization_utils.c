@@ -16,9 +16,9 @@
 #include "../includes/tokens.h"
 #include "math.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-t_token_type decode_type(char *start)
+t_token_type	decode_type(char *start)
 {
 	if (*start == '|')
 		return (PIPE);
@@ -44,9 +44,9 @@ t_token_type decode_type(char *start)
 		return (WORD);
 }
 
-void set_alloc_flag(t_token **head)
+void	set_alloc_flag(t_token **head)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = *head;
 	while (tmp->next)
@@ -54,18 +54,18 @@ void set_alloc_flag(t_token **head)
 	tmp->location.is_malloced = true;
 }
 
-char *tokenized_quoted_word(char **str, char *start, t_lst *env_lst,
-							t_token **head)
+char	*tokenized_quoted_word(char **str, char *start, t_lst *env_lst,
+		t_token **head)
 {
-	char *new_word;
-	char *word_before_quotes;
-	char *complete_word;
+	char	*new_word;
+	char	*word_before_quotes;
+	char	*complete_word;
 
 	word_before_quotes = word_till_quotes(start, env_lst, *head);
 	while (**str)
 	{
 		if (**str == 34 || **str == 39)
-			break;
+			break ;
 		*str = *str + 1;
 	}
 	new_word = make_quoted_word(str, *start, env_lst, *head);
@@ -78,10 +78,10 @@ char *tokenized_quoted_word(char **str, char *start, t_lst *env_lst,
 	return (complete_word);
 }
 
-int check_balanced_quotes(char *str)
+int	check_balanced_quotes(char *str)
 {
-	int starting_quotes;
-	int s_char;
+	int	starting_quotes;
+	int	s_char;
 
 	while (*str && *str != 34 && *str != 39)
 		str++;
@@ -93,7 +93,7 @@ int check_balanced_quotes(char *str)
 		{
 			s_char = *str++;
 			starting_quotes++;
-			continue;
+			continue ;
 		}
 		if (*str++ == s_char)
 		{
@@ -106,16 +106,16 @@ int check_balanced_quotes(char *str)
 	return (1);
 }
 
-void split_add_to_env(char *new_word, t_token **head, char **str)
+void	split_add_to_env(char *new_word, t_token **head, char **str)
 {
-	int i;
-	char **splitted;
+	int		i;
+	char	**splitted;
 
 	i = 0;
 	if (!new_word || new_word[0] == 0)
 	{
 		new_word_token(head, str, new_word, 1);
-		return;
+		return ;
 	}
 	splitted = ft_split(new_word, 32);
 	while (splitted[i])

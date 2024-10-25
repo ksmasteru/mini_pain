@@ -16,11 +16,11 @@
 #include "../includes/tokens.h"
 #include "math.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-t_token *make_new_node(t_token_type type, char *start, size_t length)
+t_token	*make_new_node(t_token_type type, char *start, size_t length)
 {
-	t_token *new;
+	t_token	*new;
 
 	new = malloc(sizeof(t_token));
 	alloc_addback(&g_allocs, new);
@@ -34,37 +34,37 @@ t_token *make_new_node(t_token_type type, char *start, size_t length)
 	return (new);
 }
 
-void new_word_token(t_token **head, char **str, char *start, size_t length)
+void	new_word_token(t_token **head, char **str, char *start, size_t length)
 {
-	t_token *tmp;
-	t_token *new;
-	t_token_type type;
+	t_token			*tmp;
+	t_token			*new;
+	t_token_type	type;
 
 	if (start == NULL || str == NULL || length == 0)
-		return;
+		return ;
 	tmp = *head;
 	type = WORD;
 	if (*head == NULL)
 	{
 		*head = make_new_node(type, start, length);
-		return;
+		return ;
 	}
 	new = make_new_node(type, start, length);
 	if (!new)
-		return;
+		return ;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
 }
 
-void add_new_token(t_token **head, char **str, char *start, size_t length)
+void	add_new_token(t_token **head, char **str, char *start, size_t length)
 {
-	t_token *tmp;
-	t_token *new;
-	t_token_type type;
+	t_token			*tmp;
+	t_token			*new;
+	t_token_type	type;
 
 	if (start == NULL || str == NULL)
-		return;
+		return ;
 	tmp = *head;
 	type = decode_type(start);
 	if (type == HEREDOC || type == APPEND || type == AND)
@@ -74,11 +74,11 @@ void add_new_token(t_token **head, char **str, char *start, size_t length)
 	if (*head == NULL)
 	{
 		*head = make_new_node(type, start, length);
-		return;
+		return ;
 	}
 	new = make_new_node(type, start, length);
 	if (!new)
-		return;
+		return ;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;

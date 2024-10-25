@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static	int	to_trim(const char *set, char c)
+static int	to_trim(const char *set, char c)
 {
 	int	i;
 

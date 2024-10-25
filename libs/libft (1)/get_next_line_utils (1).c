@@ -14,7 +14,7 @@
 
 int	gnl_strchr(const char *s, char c)
 {
-	int		i;
+	int i;
 
 	if (!s)
 		return (0);

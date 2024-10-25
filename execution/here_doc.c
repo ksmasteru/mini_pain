@@ -19,11 +19,11 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-int set_up_heredoc(char **str)
+int	set_up_heredoc(char **str)
 {
-	int fd;
+	int	fd;
 
 	signal(SIGINT, signal_ctlc_heredoc);
 	if (access("/tmp/.tmp.txt", F_OK) == 0)
@@ -35,7 +35,7 @@ int set_up_heredoc(char **str)
 	return (fd);
 }
 
-void set_off_heredoc(int fd)
+void	set_off_heredoc(int fd)
 {
 	close(fd);
 	fd = open("/tmp/.tmp.txt", O_RDWR | O_CREAT, 0644);
@@ -45,23 +45,23 @@ void set_off_heredoc(int fd)
 	close(fd);
 }
 
-void here_doc(t_slice *slice)
+void	here_doc(t_slice *slice)
 {
-	int fd;
-	char *read_str;
-	
+	int		fd;
+	char	*read_str;
+
 	restore_tty(0);
 	fd = set_up_heredoc(&read_str);
 	signal(SIGINT, signal_ctlc_heredoc);
 	if (fd == -1)
-		return;
+		return ;
 	if (slice->location[0] != 0)
 		slice->location[slice->lenght] = '\0';
 	while (read_str && strcmp(read_str, slice->location))
 	{
 		read_str = readline("> ");
 		if (!read_str)
-			break;
+			break ;
 		alloc_addback(&g_allocs, read_str);
 		if (strcmp(read_str, slice->location) != 0)
 		{

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/25 01:31:02 by aech-chi          #+#    #+#             */
+/*   Updated: 2024/10/25 01:31:16 by aech-chi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/executer.h"
 #include "../includes/minishell.h"
 #include "../includes/parser.h"
@@ -5,6 +17,7 @@
 #include "../includes/tokens.h"
 #include "sys/wait.h"
 #include <stdbool.h>
+
 extern t_alloc	*g_allocs;
 
 char	*ft_strchr(const char *s, int c)
@@ -17,13 +30,14 @@ char	*ft_strchr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == char_c)
-			return ((char *) &s[i]);
+			return ((char *)&s[i]);
 		i++;
 	}
 	if (char_c == '\0')
-		return ((char *) &s[i]);
+		return ((char *)&s[i]);
 	return (NULL);
 }
+
 void	ft_putstr(int fd, char *str)
 {
 	int	i;
@@ -35,6 +49,7 @@ void	ft_putstr(int fd, char *str)
 		i++;
 	}
 }
+
 bool	is_empty(char *line)
 {
 	int	i;
@@ -75,8 +90,7 @@ char	*read_cmd(void)
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 'A' && c <= 'Z')
-		|| (c >= 'a' && c <= 'z'))
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		return (1);
 	return (0);
 }

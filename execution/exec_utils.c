@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:25:58 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:25:59 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:07:11 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
 int set_exec_args(t_token *token, t_data *data, char ***args, char **cmd)
 {
@@ -57,9 +57,9 @@ int init_exec_check(t_token *head, t_data *data, int index)
 	return (0);
 }
 
-char *slice_and_dice(t_slice slice)
+char	*slice_and_dice(t_slice slice)
 {
-	char *res;
+	char	*res;
 
 	res = malloc(sizeof(char) * (slice.lenght + 1));
 	alloc_addback(&g_allocs, res);
@@ -70,12 +70,12 @@ char *slice_and_dice(t_slice slice)
 	return (res);
 }
 
-char **get_word_args(t_token *token)
+char	**get_word_args(t_token *token)
 {
-	int words_number;
-	char **args;
-	int i;
-	t_token *tmp;
+	int		words_number;
+	char	**args;
+	int		i;
+	t_token	*tmp;
 
 	tmp = token;
 	i = 0;
@@ -97,10 +97,10 @@ char **get_word_args(t_token *token)
 	return (args);
 }
 
-int check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
+int	check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 {
 	if (n == 1)
-		data->env_lst->status = export(data, token, line);// hard to handle export ""
+		data->env_lst->status = export(data, token, line);
 	if (n == 2)
 		data->env_lst->status = unset(data, token, line);
 	if (n == 3)
@@ -113,5 +113,5 @@ int check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 		data->env_lst->status = ft_echo2(data, line, token);
 	if (n == 7)
 		data->env_lst->status = ft_exit(data, line, token);
-	return(data->env_lst->status);
+	return (data->env_lst->status);
 }

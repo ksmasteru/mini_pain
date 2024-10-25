@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:47:00 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:47:36 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:17:54 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 
-extern t_alloc *g_allocs;
-int fill_pipes(int ***p, int n)
+extern t_alloc	*g_allocs;
+
+int	fill_pipes(int ***p, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < n)
@@ -36,9 +37,9 @@ int fill_pipes(int ***p, int n)
 	return (0);
 }
 
-int close_all_pipes(int **pfx, int len)
+int	close_all_pipes(int **pfx, int len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < len - 1)
@@ -50,7 +51,7 @@ int close_all_pipes(int **pfx, int len)
 	return (0);
 }
 
-int close_and_dup2(int **pfx, int index, int len, int flag)
+int	close_and_dup2(int **pfx, int index, int len, int flag)
 {
 	if (flag == -1)
 	{

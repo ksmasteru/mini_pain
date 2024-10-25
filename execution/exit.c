@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:32:15 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:32:29 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:08:06 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-extern t_alloc *g_allocs;
-bool is_numeric(t_token *token)
+extern t_alloc	*g_allocs;
+
+bool	is_numeric(t_token *token)
 {
-	int i;
-	char *str;
+	int		i;
+	char	*str;
 
 	i = 0;
 	if (token->location.location[0] != 0)
@@ -30,7 +31,7 @@ bool is_numeric(t_token *token)
 	if (str[0] == 0)
 	{
 		print_error("minishell ", "exit", str, "numeric argument required");
-		return false;
+		return (false);
 	}
 	else if ((str[0] == '-' || str[0] == '+') && str[1] != '\0')
 		i++;
@@ -41,15 +42,15 @@ bool is_numeric(t_token *token)
 		else
 		{
 			print_error("minishell ", "exit", str, "numeric argument required");
-			return false;	
+			return (false);
 		}
 	}
 	return (true);
 }
 
-int ft_exit(t_data *data, char *line, t_token *token)
+int	ft_exit(t_data *data, char *line, t_token *token)
 {
-	int code;
+	int	code;
 
 	(void)line;
 	code = data->env_lst->status;
@@ -72,4 +73,3 @@ int ft_exit(t_data *data, char *line, t_token *token)
 	free_data_variables(data, 1);
 	exit(code);
 }
-

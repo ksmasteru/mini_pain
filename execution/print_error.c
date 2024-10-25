@@ -19,7 +19,7 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 
-int print_error(char *s1, char *s2, char *s3, char *message)
+int	print_error(char *s1, char *s2, char *s3, char *message)
 {
 	if (s1)
 		ft_putstr_fd(2, s1);
@@ -45,9 +45,16 @@ int print_error(char *s1, char *s2, char *s3, char *message)
 	return (-1);
 }
 
-int print_error_errno(char *s1, char *s2, char *s3)
+int	print_error_errno(char *s1, char *s2, char *s3)
 {
 	print_error(s1, s2, s3, strerror(errno));
 	errno = 0;
 	return (-1);
+}
+
+void	print_cmd_nfound(char *cmd)
+{
+	ft_putstr_fd(2, "minishell: ");
+	ft_putstr_fd(2, cmd);
+	ft_putstr_fd(2, ": command not found\n");
 }

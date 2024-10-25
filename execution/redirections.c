@@ -27,20 +27,22 @@ void	open_error(char *str)
 char	*get_file_name(t_token *redirection, t_lst *env_lst, t_data *data)
 {
 	char	*file_name;
-	
+
 	(void)data;
 	(void)env_lst;
-	if  (redirection->location.location[0] == 0 && redirection->type != 18)
+	if (redirection->location.location[0] == 0 && redirection->type != 18)
 	{
 		write(2, "minishell : No such file or directory\n", 39);
 		return (NULL);
 	}
-	file_name = (char *)malloc(sizeof(char) * (redirection->location.lenght + 1));
+	file_name = (char *)malloc(sizeof(char) * (redirection->location.lenght
+				+ 1));
 	alloc_addback(&g_allocs, file_name);
 	if (!file_name)
 		return (NULL);
 	file_name[redirection->location.lenght] = '\0';
-	strncpy(file_name, redirection->location.location, redirection->location.lenght);
+	strncpy(file_name, redirection->location.location,
+		redirection->location.lenght);
 	return (file_name);
 }
 
@@ -50,7 +52,7 @@ int	redirect_in_out(char *file_name, char mode)
 	int	type;
 
 	type = 0;
-     if (mode == 0)
+	if (mode == 0)
 		type = 0;
 	else if (mode == 1)
 		type = O_RDWR | O_CREAT | O_TRUNC;
@@ -60,7 +62,7 @@ int	redirect_in_out(char *file_name, char mode)
 	if (fd == -1)
 	{
 		open_error(file_name);
-		return -1;
+		return (-1);
 	}
 	if (mode == 0)
 		dup2(fd, 0);
@@ -105,7 +107,7 @@ int	manage_redirections(t_token *redirection, t_data *data)
 	{
 		flag = do_redirect(temp->up, data);
 		if (flag == -1)
-			break;
+			break ;
 		temp = temp->down;
 	}
 	return (flag);

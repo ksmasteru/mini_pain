@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:20:02 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/13 22:21:12 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:29:49 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	built_in_code2(char *line)
 
 int	built_in_code(char *line)
 {
-	if (!line)/*was || line[0] == 0*/
+	if (!line)
 		exit(0);
 	if (ft_strlen(line) >= 6)
 	{
@@ -67,7 +67,7 @@ int	built_in_code(char *line)
 	}
 	return (built_in_code2(line));
 }
-/*this only support word counnt == 1*/
+
 void	dispatach_builtin(int n, t_data *data, char *line)
 {
 	if (n == 1)
@@ -92,8 +92,6 @@ int	check_builtin(char *line, t_data *data)
 
 	data->words_count = 1;
 	data->tokens = lexer(line, data->env_lst);
-	//test_tokens(data->tokens);
-	//return 1;
 	if (!data->tokens || check_syntax_error(&data->tokens) < 0)
 	{
 		free_allocs(&g_allocs);

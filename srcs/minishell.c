@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:25:25 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/13 22:26:11 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:30:52 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int		unset(t_data *data, t_token *token, char *line);
 
 t_mini	*mini(void)
 {
-	static t_mini var;
-	return &var;
+	static t_mini	var;
+
+	return (&var);
 }
 
 void	set_data_variables(t_data *data, char **envp)
@@ -49,6 +50,7 @@ void	set_data_variables(t_data *data, char **envp)
 void	fork_main(t_data *data, char **envp)
 {
 	int	exit_status;
+
 	exit_status = parse_cmd(data->line, envp, data);
 	data->env_lst->status = exit_status;
 	data->line = NULL;
@@ -63,10 +65,10 @@ void	*_alloc(size_t size, t_alloc **g_allocs)
 	return (new_add);
 }
 
-void exit_empty(int status)
+void	exit_empty(int status)
 {
 	write(2, "exit\n", 6);
-	exit(status);	
+	exit(status);
 }
 
 int	main(int ac, char **av, char **envp)
@@ -89,7 +91,6 @@ int	main(int ac, char **av, char **envp)
 		fork_main(&data, envp);
 		free_allocs(&g_allocs);
 	}
-	//rl_clear_history();
 	free_data_variables(&data, 0);
 	return (0);
 }

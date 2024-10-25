@@ -15,11 +15,11 @@
 #include "../includes/tokens.h"
 #include <sys/types.h>
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-int ft1_strlen(char *str)
+int	ft1_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (str == NULL)
@@ -29,11 +29,11 @@ int ft1_strlen(char *str)
 	return (i);
 }
 
-int count_args(char **status)
+int	count_args(char **status)
 {
-	int i;
-	int j;
-	int n;
+	int	i;
+	int	j;
+	int	n;
 
 	n = 0;
 	i = 0;
@@ -51,12 +51,13 @@ int count_args(char **status)
 	return (n);
 }
 
-int check_argtwo(char *status)
+int	check_argtwo(char *status)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (status[i] == ' ' || status[i] == '\t' || status[i] == '+' || status[i] == '-')
+	while (status[i] == ' ' || status[i] == '\t' || status[i] == '+'
+		|| status[i] == '-')
 		i++;
 	while (status[i] > 47 && status[i] < 57)
 		i++;
@@ -65,16 +66,17 @@ int check_argtwo(char *status)
 	return (1);
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int i;
-	unsigned long long int sign;
-	unsigned long long int result;
+	int						i;
+	unsigned long long int	sign;
+	unsigned long long int	result;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v' || str[i] == '\r' || str[i] == '\f')
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+		|| str[i] == '\r' || str[i] == '\f')
 		i++;
 	if (str[i] == '+' && str[i + 1] != '-')
 		i++;
@@ -92,15 +94,15 @@ int ft_atoi(const char *str)
 	return (sign * result);
 }
 
-void split_add_to_allocs(char **status)
+void	split_add_to_allocs(char **status)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!status)
-		return;
+		return ;
 	if (!*status)
-		return;
+		return ;
 	while (status[i])
 		alloc_addback(&g_allocs, status[i++]);
 	alloc_addback(&g_allocs, status[i]);

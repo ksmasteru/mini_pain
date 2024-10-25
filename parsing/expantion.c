@@ -16,14 +16,14 @@
 #include "../includes/tokens.h"
 #include "math.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-char *expand_word(char **str, char *start, t_lst *env_lst,
-				  char closing_quotes)
+char	*expand_word(char **str, char *start, t_lst *env_lst,
+		char closing_quotes)
 {
-	char *before_word;
-	char *expanded_word;
-	char *whole_word;
+	char	*before_word;
+	char	*expanded_word;
+	char	*whole_word;
 
 	expanded_word = NULL;
 	(void)closing_quotes;
@@ -39,16 +39,17 @@ char *expand_word(char **str, char *start, t_lst *env_lst,
 	else
 		expanded_word = expantion(str, env_lst);
 	whole_word = join_and_free(before_word, expanded_word);
-	if (**str != 0 && **str != 32 && !(**str >= 9 && **str <= 13) && !(strchr("|<>", **str)))
+	if (**str != 0 && **str != 32 && !(**str >= 9 && **str <= 13)
+		&& !(strchr("|<>", **str)))
 		return (after_dollar_word(str, whole_word, env_lst, 0));
 	return (whole_word);
 }
 
-char *close_expanded_word(char *whole_word, char **str)
+char	*close_expanded_word(char *whole_word, char **str)
 {
-	int i;
-	char *quotes;
-	int len;
+	int		i;
+	char	*quotes;
+	int		len;
 
 	i = 0;
 	while (*(*str + i) != 0)
@@ -66,9 +67,9 @@ char *close_expanded_word(char *whole_word, char **str)
 	return (ft_strjoin(whole_word, quotes));
 }
 
-int expantion_check_quotes(char **str, t_lst *env_lst, char **expanded_word)
+int	expantion_check_quotes(char **str, t_lst *env_lst, char **expanded_word)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (**str == 34 || **str == 39)
@@ -78,18 +79,20 @@ int expantion_check_quotes(char **str, t_lst *env_lst, char **expanded_word)
 	}
 	else
 	{
-		while (*(*str + i) != 0 && *(*str + i) != '$' && *(*str + i) != 34 && *(*str + i) != 39 && *(*str + i) != 32 && !(*(*str + i) >= 9 && *(*str + i) <= 13) && !(strchr("|><", *(*str + i))))
+		while (*(*str + i) != 0 && *(*str + i) != '$' && *(*str + i) != 34
+			&& *(*str + i) != 39 && *(*str + i) != 32 && !(*(*str + i) >= 9
+				&& *(*str + i) <= 13) && !(strchr("|><", *(*str + i))))
 			i++;
 	}
 	return (i);
 }
 
-char *expantion(char **str, t_lst *env_lst)
+char	*expantion(char **str, t_lst *env_lst)
 {
-	int i;
-	char *expand_word;
-	int len;
-	char *expanded_word;
+	int		i;
+	char	*expand_word;
+	int		len;
+	char	*expanded_word;
 
 	if (**str != '$')
 		return (NULL);
@@ -113,9 +116,9 @@ char *expantion(char **str, t_lst *env_lst)
 	return (expanded_word);
 }
 
-char *get_expanded_word(char *expand_word, t_lst *env_lst)
+char	*get_expanded_word(char *expand_word, t_lst *env_lst)
 {
-	char *expanded_word;
+	char	*expanded_word;
 
 	expanded_word = NULL;
 	while (env_lst)
@@ -124,11 +127,12 @@ char *get_expanded_word(char *expand_word, t_lst *env_lst)
 		{
 			if (env_lst->value)
 			{
-				expanded_word = (char *)malloc(sizeof(char) * strlen(env_lst->value->data) + 1);
+				expanded_word = (char *)malloc(sizeof(char)
+						* strlen(env_lst->value->data) + 1);
 				alloc_addback(&g_allocs, expanded_word);
 				expanded_word[strlen(env_lst->value->data)] = '\0';
 				expanded_word = strncpy(expanded_word, env_lst->value->data,
-										strlen(env_lst->value->data));
+						strlen(env_lst->value->data));
 				return (expanded_word);
 			}
 			else

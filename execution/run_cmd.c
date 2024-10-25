@@ -19,11 +19,11 @@
 #include <readline/history.h>
 #include <readline/readline.h>
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-void free_2d_str(char **str)
+void	free_2d_str(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -47,13 +47,6 @@ int init_check_main_cmd(t_data *data, t_token *token)
 		close_and_dup2(data->fdx, data->index, data->words_count,
 			data->flag);
 	return (0);
-}
-
-void	print_cmd_nfound(char *cmd)
-{
-	ft_putstr_fd(2, "minishell: ");
-	ft_putstr_fd(2, cmd);
-	ft_putstr_fd(2, ": command not found\n");
 }
 
 int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
@@ -87,7 +80,7 @@ int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 	return (0);
 }
 
-void free_exec_args(char **args, char *cmd, t_tree *head)
+void	free_exec_args(char **args, char *cmd, t_tree *head)
 {
 	if (args)
 		free_2d_str(args);
@@ -132,10 +125,10 @@ int execute_cmd(int index, int len, t_data *data, t_token *token)
 	return (0);
 }
 
-void run_cmd(int len, t_data *data)
+void	run_cmd(int len, t_data *data)
 {
-	t_token *tmp;
-	int index;
+	t_token	*tmp;
+	int		index;
 
 	index = 0;
 	tmp = data->tokens;

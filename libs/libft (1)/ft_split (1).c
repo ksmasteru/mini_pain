@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split (1).c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sait-alo <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:21:36 by sait-alo          #+#    #+#             */
-/*   Updated: 2023/12/10 21:21:40 by sait-alo         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:23:19 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "tokens.h"
-extern t_alloc* allocs;
+
+extern t_alloc	*allocs;
+
 static int	count_words(const char *s, char c)
 {
 	unsigned int	i;
@@ -72,14 +74,12 @@ static char	**split_helper(char **tab, const char *s, char c)
 	return (tab);
 }
 
-//char	**ft_split(char const *s, char c)
 {
-	char	**tab;
+	char **tab;
 
 	if (!s)
 		return (NULL);
 	tab = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
-	//alloc_addback(&allocs, tab);
 	if (!tab)
 		return (NULL);
 	return (split_helper(tab, s, c));

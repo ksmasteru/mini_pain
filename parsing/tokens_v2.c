@@ -13,9 +13,9 @@
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 
-void word_add_down(t_token **word, t_token *redir)
+void	word_add_down(t_token **word, t_token *redir)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	(*word)->next = redir->next;
 	tmp = (*word)->down;
@@ -33,11 +33,11 @@ void word_add_down(t_token **word, t_token *redir)
 	}
 }
 
-void swap_redir_word(t_token **redir, t_token *word)
+void	swap_redir_word(t_token **redir, t_token *word)
 {
-	t_token *temp;
-	t_token *tmp_dwn;
-	t_token *word_next;
+	t_token	*temp;
+	t_token	*tmp_dwn;
+	t_token	*word_next;
 
 	word_next = word->next;
 	temp = *redir;
@@ -54,15 +54,15 @@ void swap_redir_word(t_token **redir, t_token *word)
 	(*redir)->next = word_next;
 }
 
-void merge_the_words(t_token **words_list, t_token *new_word)
+void	merge_the_words(t_token **words_list, t_token *new_word)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = *words_list;
 	if (!tmp)
 	{
 		*words_list = new_word;
-		return;
+		return ;
 	}
 	if ((tmp->up) == NULL)
 		tmp->up = new_word;
@@ -75,15 +75,15 @@ void merge_the_words(t_token **words_list, t_token *new_word)
 	}
 }
 
-void merge_the_redirections(t_token **redirection_list, t_token *new_red)
+void	merge_the_redirections(t_token **redirection_list, t_token *new_red)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = *redirection_list;
 	if (!tmp)
 	{
 		*redirection_list = new_red;
-		return;
+		return ;
 	}
 	if (!tmp->down)
 		tmp->down = new_red;
@@ -96,9 +96,9 @@ void merge_the_redirections(t_token **redirection_list, t_token *new_red)
 	}
 }
 
-t_token *merge_simple_command(t_token **words_list, t_token **redirection_list)
+t_token	*merge_simple_command(t_token **words_list, t_token **redirection_list)
 {
-	t_token *simple_command;
+	t_token	*simple_command;
 
 	if (*words_list != NULL)
 	{
@@ -111,12 +111,12 @@ t_token *merge_simple_command(t_token **words_list, t_token **redirection_list)
 	return (simple_command);
 }
 
-t_token *tokens_v6(t_token **tokens)
+t_token	*tokens_v6(t_token **tokens)
 {
-	t_token *tmp;
-	t_token *redirection_list;
-	t_token *words_list;
-	t_token *shunk;
+	t_token	*tmp;
+	t_token	*redirection_list;
+	t_token	*words_list;
+	t_token	*shunk;
 
 	redirection_list = NULL;
 	words_list = NULL;
@@ -129,17 +129,17 @@ t_token *tokens_v6(t_token **tokens)
 			merge_the_redirections(&redirection_list, tmp);
 		tmp = tmp->next;
 		if (tmp == NULL)
-			break;
+			break ;
 	}
 	shunk = merge_simple_command(&words_list, &redirection_list);
 	*tokens = tmp;
 	return (shunk);
 }
 
-void improve_tokens(t_token **tokens, t_data *data)
+void	improve_tokens(t_token **tokens, t_data *data)
 {
-	t_token *shunk;
-	t_token *final_list;
+	t_token	*shunk;
+	t_token	*final_list;
 
 	final_list = NULL;
 	while ((*tokens) != NULL)
@@ -149,7 +149,7 @@ void improve_tokens(t_token **tokens, t_data *data)
 			shunk->next = NULL;
 		ft_list_addback(&final_list, shunk);
 		if (*tokens == NULL)
-			break;
+			break ;
 		if ((*tokens)->type == PIPE)
 		{
 			data->words_count++;

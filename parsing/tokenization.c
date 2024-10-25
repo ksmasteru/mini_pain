@@ -16,8 +16,7 @@
 #include "../includes/tokens.h"
 #include "math.h"
 
-
-bool not_heredoc(t_token *head)
+bool	not_heredoc(t_token *head)
 {
 	if (!head)
 		return (true);
@@ -28,10 +27,10 @@ bool not_heredoc(t_token *head)
 	return (true);
 }
 
-int words_lexer(t_token **head, char **str, char *start, t_lst *env_lst)
+int	words_lexer(t_token **head, char **str, char *start, t_lst *env_lst)
 {
-	size_t length;
-	char *new_word;
+	size_t	length;
+	char	*new_word;
 
 	length = 0;
 	while (**str && !(ft_strchr(" \t\v\r|><", **str)))
@@ -47,7 +46,7 @@ int words_lexer(t_token **head, char **str, char *start, t_lst *env_lst)
 				new_word = tokenized_quoted_word(str, start, env_lst, head);
 			length = 0;
 			start = *str;
-			continue;
+			continue ;
 		}
 		*str = *str + 1;
 		length++;
@@ -56,10 +55,10 @@ int words_lexer(t_token **head, char **str, char *start, t_lst *env_lst)
 	return (0);
 }
 
-t_token *lexer(char *str, t_lst *env_lst)
+t_token	*lexer(char *str, t_lst *env_lst)
 {
-	char *start;
-	t_token *head;
+	char	*start;
+	t_token	*head;
 
 	start = str;
 	head = NULL;
@@ -73,7 +72,8 @@ t_token *lexer(char *str, t_lst *env_lst)
 			add_new_token(&head, &str, start, 1);
 			start = str;
 		}
-		if ((ft_strchr(str, 34) || ft_strchr(str, 39)) && (check_balanced_quotes(str) != 0))
+		if ((ft_strchr(str, 34) || ft_strchr(str, 39))
+			&& (check_balanced_quotes(str) != 0))
 		{
 			ft_putstr_fd(2, "Error: quotes aren't balanced\n");
 			return (NULL);
@@ -84,9 +84,9 @@ t_token *lexer(char *str, t_lst *env_lst)
 	return (head);
 }
 
-void test_tokens(t_token *tmp)
+/*void	test_tokens(t_token *tmp)
 {
-	t_token *holder;
+	t_token	*holder;
 
 	if (!tmp)
 		printf("no tokens to test\n");
@@ -94,7 +94,8 @@ void test_tokens(t_token *tmp)
 	{
 		printf("\t\t[new token]\n");
 		holder = tmp;
-		printf("------------------------parent type %d------------------------\n", tmp->type);
+		printf("------------------------parent type
+			%d------------------------\n", tmp->type);
 		while (tmp->down)
 		{
 			printf("--down is %d\n", tmp->down->type);
@@ -104,18 +105,21 @@ void test_tokens(t_token *tmp)
 				if (tmp->down->up->location.location)
 				{
 					tmp->down->up->location.location[tmp->down->up->location.lenght] = 0;
-					printf("-----------redirection file is %s\n", tmp->down->up->location.location);
+					printf("-----------redirection file is %s\n",
+						tmp->down->up->location.location);
 				}
 			}
 			tmp = tmp->down;
 		}
 		while (holder->up)
 		{
-			printf("------------------------child up is %d\n------------------------", holder->up->type);
+			printf("------------------------child up is
+				%d\n------------------------", holder->up->type);
 			holder->up->location.location[holder->up->location.lenght] = 0;
-			printf("------------------------child value is %s------------------------\n", holder->up->location.location);
+			printf("------------------------child value is
+				%s------------------------\n", holder->up->location.location);
 			holder = holder->up;
 		}
 		tmp = tmp->next;
 	}
-}
+}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispatcher.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:24:06 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:24:07 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/10/25 00:25:12 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include "../includes/tokens.h"
 #include "math.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-void run_multiple_commands(t_data *data)
+void	run_multiple_commands(t_data *data)
 {
-	int *pids;
-	int **pfd;
-	int i;
+	int	*pids;
+	int	**pfd;
+	int	i;
 
 	i = 0;
 	pids = (int *)malloc(sizeof(int) * (data->words_count));
@@ -43,10 +43,10 @@ void run_multiple_commands(t_data *data)
 		execute_cmd(0, 1, data, data->tokens);
 }
 
-int parse_cmd(char *line, char **envp, t_data *data)
+int	parse_cmd(char *line, char **envp, t_data *data)
 {
-	int status;
-	int pid;
+	int	status;
+	int	pid;
 
 	signal(SIGINT, SIG_IGN);
 	status = 0;

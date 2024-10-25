@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:06:54 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/13 22:09:21 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/10/25 01:26:49 by aech-chi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@
 #include "../includes/tokens.h"
 #include "math.h"
 
-extern t_alloc *g_allocs;
+extern t_alloc	*g_allocs;
 
-char *normal_word(char **str)
+char	*normal_word(char **str)
 {
-	char *word;
-	int i;
+	char	*word;
+	int		i;
 
 	i = 0;
-	while (*(*str + i) && *(*str + i) != 34 && *(*str + i) != 39 && !ft_strchr(" \v\t\r\n|<>;&()", *(*str + i)))
+	while (*(*str + i) && *(*str + i) != 34 && *(*str + i) != 39
+		&& !ft_strchr(" \v\t\r\n|<>;&()", *(*str + i)))
 		i++;
 	word = (char *)malloc(sizeof(char) * i + 1);
 	alloc_addback(&g_allocs, word);
 	word[i] = '\0';
 	i = 0;
-	while (**str && **str != 34 && **str != 39 && !ft_strchr(" \v\t\r\n|<>;&()", **str))
+	while (**str && **str != 34 && **str != 39 && !ft_strchr(" \v\t\r\n|<>;&()",
+			**str))
 	{
 		word[i++] = **str;
 		*str = *str + 1;
@@ -38,10 +40,10 @@ char *normal_word(char **str)
 	return (word);
 }
 
-char *make_quoted_word(char **str, int c, t_lst *env_lst, t_token *head)
+char	*make_quoted_word(char **str, int c, t_lst *env_lst, t_token *head)
 {
-	char *whole_word;
-	char *word;
+	char	*whole_word;
+	char	*word;
 
 	(void)head;
 	whole_word = NULL;
@@ -59,11 +61,11 @@ char *make_quoted_word(char **str, int c, t_lst *env_lst, t_token *head)
 	return (whole_word);
 }
 
-char *clean_quotes_from_word(char *quoted_word, int len, int qoute)
+char	*clean_quotes_from_word(char *quoted_word, int len, int qoute)
 {
-	char *clean_word;
-	int i;
-	int x;
+	char	*clean_word;
+	int		i;
+	int		x;
 
 	i = 0;
 	x = 0;
@@ -83,17 +85,17 @@ char *clean_quotes_from_word(char *quoted_word, int len, int qoute)
 	return (clean_word);
 }
 
-char *qouted_word(char **str, char *start, t_lst *env_lst, t_token *head)
+char	*qouted_word(char **str, char *start, t_lst *env_lst, t_token *head)
 {
-	char *word_before_qoutes;
-	char *complete_word;
-	char *qouted_word;
+	char	*word_before_qoutes;
+	char	*complete_word;
+	char	*qouted_word;
 
 	word_before_qoutes = word_till_quotes(start, env_lst, head);
 	while (**str)
 	{
 		if (**str == 34 || **str == 39)
-			break;
+			break ;
 		*str = *str + 1;
 	}
 	qouted_word = make_quoted_word(str, **str, env_lst, head);
@@ -101,9 +103,10 @@ char *qouted_word(char **str, char *start, t_lst *env_lst, t_token *head)
 	return (complete_word);
 }
 
-char *expand_quoted_word(char *str, t_lst *env_lst) /*channged*/
+char	*expand_quoted_word(char *str, t_lst *env_lst) /*channged*/
 {
-	char *whole_word;
+	char	*whole_word;
+
 	whole_word = NULL;
 	if (!str)
 		return (NULL);
@@ -112,7 +115,7 @@ char *expand_quoted_word(char *str, t_lst *env_lst) /*channged*/
 		if (*str == '$')
 		{
 			whole_word = join_and_free(whole_word, expantion(&str, env_lst));
-			continue;
+			continue ;
 		}
 		else
 			whole_word = ft_strcat(whole_word, *str);

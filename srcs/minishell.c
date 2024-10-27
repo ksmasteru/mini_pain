@@ -44,6 +44,7 @@ void	set_data_variables(t_data *data, char **envp)
 	data->line = NULL;
 	data->allocs = NULL;
 	data->pwd = NULL;
+	data->oldpwd = NULL;
 	data->is_cmd = 0;
 }
 

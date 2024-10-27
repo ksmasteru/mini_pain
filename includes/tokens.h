@@ -115,6 +115,7 @@ typedef struct s_data
 	char			**env;
 	char			**av;
 	char			*pwd;
+	char			*oldpwd;
 	int				is_cmd;
 }					t_data;
 

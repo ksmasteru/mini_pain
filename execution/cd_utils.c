@@ -75,12 +75,8 @@ bool	is_special(char *path)
 	return (false);
 }
 
-int	update_path_var(t_data *data)
+int	update_path_var(t_data *data, char *oldpwd)
 {
-	char	oldpwd[PATH_MAX];
-
-	if (!getcwd(oldpwd, PATH_MAX))
-		return (perror("minishell: cd: "), 1);
 	update_pwd(data);
 	update_oldpwd(oldpwd, data);
 	return (0);

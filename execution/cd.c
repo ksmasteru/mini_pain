@@ -41,16 +41,19 @@ void	update_oldpwd(char *oldpwd, t_data *data)
 char	*get_cd_path(char *path, t_data *data, t_token *tokens)
 {
 	char	*whole_path;
+	(void)path;
+	(void)data;
 
-	if (data->words_count == 1)
-		return (path);
+	whole_path = NULL;
+	if (!tokens->up || tokens->up->location.location[0] == 0)
+		return (NULL);
 	tokens = tokens->up;
-	whole_path = ft_strdup2("cd");
 	while (tokens)
 	{
 		if (tokens->location.lenght != 0)
 			tokens->location.location[tokens->location.lenght] = 0;
-		whole_path = ft_strjoin(whole_path, " ");
+		if (whole_path && tokens->location.location[0] != 0)
+			whole_path = ft_strjoin(whole_path, " ");
 		whole_path = ft_strjoin(whole_path, tokens->location.location);
 		tokens = tokens->up;
 	}
@@ -60,11 +63,13 @@ char	*get_cd_path(char *path, t_data *data, t_token *tokens)
 int	cd(char *path, t_data *data, t_token *tokens)
 {
 	char	*home;
-
+	char	oldpwd[PATH_MAX];
+	
+	if (getcwd(oldpwd, PATH_MAX))
+		data->oldpwd = oldpwd;
 	path = get_cd_path(path, data, tokens);
 	home = get_home_path(data);
-	if ((tokens->up && tokens->up->location.location[0] == 0) || is_empty(path
-			+ 2) || is_special(path + 2))
+	if (!path || is_empty(path) || is_special(path))
 	{
 		if (!home || chdir(home) < 0)
 			return (cd_error(home, tokens));
@@ -79,9 +84,9 @@ int	cd(char *path, t_data *data, t_token *tokens)
 		if (tokens->up->location.location[0] != 0)
 			tokens->up->location.location[tokens->up->location.lenght] = 0;
 		if (chdir(tokens->up->location.location) < 0)
-			return (cd_error(path + 2, tokens));
+			return (cd_error(path, tokens));
 	}
-	return (update_path_var(data));
+	return (update_path_var(data, oldpwd));
 }
 
 int	cd_error(char *path, t_token *tokens)

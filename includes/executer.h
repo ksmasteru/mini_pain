@@ -94,7 +94,7 @@ int		_export_out(t_data *data, t_token *token, char *line);
 bool	is_numeric(t_token *token);
 char	*get_cd_path(char *path, t_data *data, t_token *tokens);
 void	open_error(char *str);
-int		update_path_var(t_data *data);
+int		update_path_var(t_data *data, char*oldpwd);
 int		show_export(t_data *data);
 void	set_off_heredoc(int fd);
 char	*ft_strchr(const char *s, int c);

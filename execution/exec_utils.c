@@ -102,7 +102,7 @@ int	check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 	if (n == 1)
 		data->env_lst->status = export(data, token, line);
 	if (n == 2)
-		data->env_lst->status = unset(data, token, line);
+		data->env_lst->status = unset(data, token);
 	if (n == 3)
 		data->env_lst->status = show_env(data, 0);
 	if (n == 4)

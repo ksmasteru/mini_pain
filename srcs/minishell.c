@@ -22,7 +22,7 @@ int		allocated = 0;
 int		freed = 0;
 t_alloc	*g_allocs = NULL;
 int		built_in(int op, t_data *data, t_token *token);
-int		unset(t_data *data, t_token *token, char *line);
+int		unset(t_data *data, t_token *token);
 
 t_mini	*mini(void)
 {

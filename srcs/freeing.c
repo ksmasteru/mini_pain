@@ -20,15 +20,11 @@
 
 extern t_alloc	*g_allocs;
 
-void	free_data_variables(t_data *data, int flag)
+void free_t_lst(t_data *data)
 {
-	t_lst	*tmp;
-	t_lst	*holder;
-	int		i;
-	int		status;
+	t_lst *holder;
+	t_lst *tmp;
 
-	status = data->env_lst->status;
-	i = 0;
 	tmp = data->env_lst;
 	while (tmp)
 	{
@@ -44,6 +40,18 @@ void	free_data_variables(t_data *data, int flag)
 		free(tmp);
 		tmp = holder;
 	}
+}
+
+void	free_data_variables(t_data *data, int flag)
+{
+	t_lst	*tmp;
+	t_lst	*holder;
+	int		i;
+	int		status;
+
+	status = data->env_lst->status;
+	i = 0;
+	free_t_lst(data);
 	while (data->env[i])
 		free(data->env[i++]);
 	free(data->env[i]);

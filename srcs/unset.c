@@ -72,12 +72,11 @@ void	ft_lstdelete(t_lst **head, t_lst *to_delete)
 	free(to_delete);
 }
 
-int	unset(t_data *data, t_token *token, char *line)
+int	unset(t_data *data, t_token *token)
 {
 	t_lst	*tmp;
 	int		code;
 
-	(void)line;
 	if (token->up == NULL)
 		return (0);
 	tmp = data->env_lst;

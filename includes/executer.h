@@ -62,7 +62,7 @@ int		count_args(char **status);
 int		cd(char *path, t_data *data, t_token *tokens);
 int		ft_atoi(const char *str);
 int		pwd(char *cmd, t_token *tokens, t_data *data);
-int		unset(t_data *data, t_token *token, char *line);
+int		unset(t_data *data, t_token *token);
 int		check_builtin_multiple(char *line, t_data *data, t_token *token, int n);
 int		built_in_code(char *line);
 bool	not_valid_variable(t_token *token);

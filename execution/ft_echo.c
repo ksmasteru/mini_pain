@@ -60,7 +60,6 @@ int	ft_echo2(t_data *data, char *line, t_token *token)
 
 	(void)line;
 	tmp = token->up;
-	data->flag = manage_redirections(token->down, data);
 	if (data->flag == -1)
 		return (1);
 	if (tmp)
@@ -72,8 +71,6 @@ int	ft_echo2(t_data *data, char *line, t_token *token)
 			tmp = tmp->up;
 		}
 	}
-	if (data->flag == 0 || data->flag == 1)
-		restore_tty(data->flag);
 	return (0);
 }
 

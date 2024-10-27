@@ -70,6 +70,9 @@ int	built_in_code(char *line)
 
 void	dispatach_builtin(int n, t_data *data, char *line)
 {
+	data->flag = manage_redirections(data->tokens->down, data);
+	if (data->flag == -1)
+		return ;
 	if (n == 1)
 		data->env_lst->status = export(data, data->tokens, line);
 	if (n == 2)
@@ -84,6 +87,8 @@ void	dispatach_builtin(int n, t_data *data, char *line)
 		data->env_lst->status = ft_echo2(data, line, data->tokens);
 	if (n == 7)
 		data->env_lst->status = ft_exit(data, line, data->tokens);
+	if (data->flag == 0 || data->flag == 1)
+		restore_tty(data->flag);
 }
 
 int	check_builtin(char *line, t_data *data)

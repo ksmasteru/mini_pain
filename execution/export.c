@@ -66,7 +66,7 @@ int	show_export(t_data *data)
 			write(1, "=", 1);
 		else
 		{
-			write(1, "\n", 2);
+			write(1, "\n", 1);
 			tmp = tmp->next;
 			continue ;
 		}
@@ -74,7 +74,7 @@ int	show_export(t_data *data)
 		if (tmp->value)
 			ft_putstr(1, tmp->value->data);
 		write(1, &c, 1);
-		write(1, "\n", 2);
+		write(1, "\n", 1);
 		tmp = tmp->next;
 	}
 	return (0);

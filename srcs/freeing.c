@@ -44,8 +44,6 @@ void free_t_lst(t_data *data)
 
 void	free_data_variables(t_data *data, int flag)
 {
-	t_lst	*tmp;
-	t_lst	*holder;
 	int		i;
 	int		status;
 

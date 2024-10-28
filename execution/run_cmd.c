@@ -22,7 +22,7 @@
 extern t_alloc	*g_allocs;
 
 
-int init_check_main_cmd(t_data *data, t_token *token)
+int	init_check_main_cmd(t_data *data, t_token *token)
 {
 	if (token->type == WORD)
 		data->flag = manage_redirections(token->down, data);

@@ -13,13 +13,13 @@
 #include "../includes/executer.h"
 #include "../includes/parser.h"
 
-void ft_echo(t_token *tmp, bool n)
+void	ft_echo(t_token *tmp, bool n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!tmp)
-		return;
+		return ;
 	if (tmp->location.location[0] != 0)
 		tmp->location.location[tmp->location.lenght] = 0;
 	while (i < ft_strlen(tmp->location.location))
@@ -27,7 +27,8 @@ void ft_echo(t_token *tmp, bool n)
 		write(1, tmp->location.location + i, 1);
 		i++;
 	}
-	if (tmp->location.location[0] != 0 && tmp->up && tmp->up->location.location[0] != 0)
+	if (tmp->location.location[0] != 0 && tmp->up
+		&& tmp->up->location.location[0] != 0)
 		write(1, " ", 1);
 	if (!n && !tmp->up)
 		write(1, "\n", 1);

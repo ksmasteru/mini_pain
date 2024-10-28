@@ -2,7 +2,7 @@ NAME = minishell
 CC = cc
 CFLAGS = -g -fsanitize=address -Wall -Werror -Wextra
 
-SRCS = srcs/minishell.c parsing/tokenization.c parsing/tokens_v2.c execution/run_cmd.c execution/get_paths.c srcs/str_utils.c \
+SRCS = srcs/minishell.c parsing/tokenization.c parsing/tokens_v2.c execution/run_cmd.c execution/get_paths.c srcs/str_utils.c parsing/tokens_v1.c \
 		parsing/ft_split.c execution/here_doc.c execution/get_envp.c execution/cd.c execution/exit.c execution/cd_utils.c  execution/exec_utils.c parsing/tokenization_utils.c\
 		 execution/pwd.c execution/exit_utils.c execution/redirections.c parsing/tokens_v3.c execution/print_error.c execution/pipes.c execution/export.c parsing/syntax_error.c \
 		srcs/ft_strjoin.c srcs/freeing.c srcs/env_to_list.c srcs/env_utils.c srcs/unset.c parsing/quotes.c srcs/check_builtins.c parsing/new_token.c \

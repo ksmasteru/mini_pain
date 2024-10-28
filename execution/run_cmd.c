@@ -21,14 +21,13 @@
 
 extern t_alloc	*g_allocs;
 
-
 int	init_check_main_cmd(t_data *data, t_token *token)
 {
 	if (token->type == WORD)
 		data->flag = manage_redirections(token->down, data);
 	else if (token->type == REIDRECTION)
 		data->flag = manage_redirections(token, data);
-	if (data->is_cmd == - 1)
+	if (data->is_cmd == -1)
 	{
 		close_all_pipes(data->fdx, data->words_count);
 		return (127);
@@ -39,9 +38,9 @@ int	init_check_main_cmd(t_data *data, t_token *token)
 	return (0);
 }
 
-int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
+int	run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 {
-	int status;
+	int	status;
 
 	status = 0;
 	data->pids[data->words_count - 1] = fork();
@@ -57,7 +56,7 @@ int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 	return (0);
 }
 
-void _exec_cmd(int status, char *cmd, char **args, t_data *data)
+void    _exec_cmd(int status, char *cmd, char **args, t_data *data)
 {
 	if (status == 0)
 	{
@@ -76,9 +75,10 @@ void _exec_cmd(int status, char *cmd, char **args, t_data *data)
 
 int execute_cmd(int index, int len, t_data *data, t_token *token)
 {
-	char **args;
-	char *cmd;
-	int status;
+	char    **args;
+	char    *cmd;
+	int     status;
+
 	data->index = index;
 	set_exec_args(token, data, &args, &cmd);
 	if (index == len - 1 || len == 1)
@@ -90,7 +90,7 @@ int execute_cmd(int index, int len, t_data *data, t_token *token)
 		signal(SIGQUIT, SIG_DFL);
 		status = init_exec_check(token, data, index);
 		if (built_in_code(cmd) != 0)
-			exit (check_builtin_multiple(cmd, data, token,built_in_code(cmd)));
+			exit (check_builtin_multiple(cmd, data, token, built_in_code(cmd)));
 		_exec_cmd(status, cmd, args, data);
 	}
 	return (0);

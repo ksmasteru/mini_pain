@@ -20,10 +20,10 @@
 
 extern t_alloc	*g_allocs;
 
-void free_t_lst(t_data *data)
+void	free_t_lst(t_data *data)
 {
-	t_lst *holder;
-	t_lst *tmp;
+	t_lst	*holder;
+	t_lst	*tmp;
 
 	tmp = data->env_lst;
 	while (tmp)

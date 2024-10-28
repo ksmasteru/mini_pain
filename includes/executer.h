@@ -92,7 +92,7 @@ void	here_doc(t_slice *slice);
 int		check_builtin(char *line, t_data *data);
 int		_export_out(t_data *data, t_token *token, char *line);
 bool	is_numeric(t_token *token);
-char	*get_cd_path(char *path, t_data *data, t_token *tokens);
+char	*get_cd_path(t_token *tokens);
 void	open_error(char *str);
 int		update_path_var(t_data *data, char*oldpwd);
 int		show_export(t_data *data);

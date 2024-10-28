@@ -38,11 +38,9 @@ void	update_oldpwd(char *oldpwd, t_data *data)
 	add_val_to_env(pair, data);
 }
 
-char	*get_cd_path(char *path, t_data *data, t_token *tokens)
+char	*get_cd_path(t_token *tokens)
 {
 	char	*whole_path;
-	(void)path;
-	(void)data;
 
 	whole_path = NULL;
 	if (!tokens->up || tokens->up->location.location[0] == 0)
@@ -64,10 +62,10 @@ int	cd(char *path, t_data *data, t_token *tokens)
 {
 	char	*home;
 	char	oldpwd[PATH_MAX];
-	
+
 	if (getcwd(oldpwd, PATH_MAX))
 		data->oldpwd = oldpwd;
-	path = get_cd_path(path, data, tokens);
+	path = get_cd_path(tokens);
 	home = get_home_path(data);
 	if (!path || is_empty(path) || is_special(path))
 	{

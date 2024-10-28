@@ -60,17 +60,16 @@ int run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 void _exec_cmd(int status, char *cmd, char **args, t_data *data)
 {
 	if (status == 0)
+	{
 		execve(cmd, args, data->envp);
-	if (errno == ENOENT)
-	{
-		print_cmd_nfound(cmd);
-		status = 127;
-	}
-	else
-	{
-		status = 126;
+		if (errno == ENOENT)
+			status = 127;
+		else
+			status = 126;
 		print_error_errno("minishell", cmd, NULL);
 	}
+	else
+		print_cmd_nfound(cmd);
 	free_data_variables(data, 1);
 	exit(status);
 }

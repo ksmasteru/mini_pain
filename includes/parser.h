@@ -69,7 +69,7 @@ char				*clean_quotes_from_word(char *res, int j, int c);
 void				env_to_lst(char **env, t_data *data);
 void				lst_addback(t_lst **head, t_lst *new_lst);
 t_lst				*new_list(char *str, int len);
-int					export(t_data *data, t_token *token, char *line);
+int					export(t_data *data, t_token *token);
 void				add_val_to_env(t_lst *pair, t_data *data);
 t_lst				*export_value(t_token *token);
 int					find_value(t_slice *location, int key);

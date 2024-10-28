@@ -74,7 +74,7 @@ void	dispatach_builtin(int n, t_data *data, char *line)
 	if (data->flag == -1)
 		return ;
 	if (n == 1)
-		data->env_lst->status = export(data, data->tokens, line);
+		data->env_lst->status = export(data, data->tokens->up);
 	if (n == 2)
 		data->env_lst->status = unset(data, data->tokens);
 	if (n == 3)

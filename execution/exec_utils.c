@@ -100,7 +100,7 @@ char	**get_word_args(t_token *token)
 int	check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 {
 	if (n == 1)
-		data->env_lst->status = export(data, token, line);
+		data->env_lst->status = export(data, token->up);
 	if (n == 2)
 		data->env_lst->status = unset(data, token);
 	if (n == 3)

@@ -101,14 +101,12 @@ int	show_env(t_data *data, int is_export)
 	return (0);
 }
 
-int	export(t_data *data, t_token *token, char *line)
+int	export(t_data *data, t_token *token)
 {
 	t_lst	*pair;
 
-	(void)line;
-	if (token->up == NULL)
+	if (token == NULL)
 		return (show_env(data, 1));
-	token = token->up;
 	if (*(token->location.location) == 32 || (*(token->location.location) >= 9
 			&& *(token->location.location) <= 13))
 	{

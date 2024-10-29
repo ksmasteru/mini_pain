@@ -100,3 +100,10 @@ int	unset(t_data *data, t_token *token)
 	}
 	return (code);
 }
+
+t_mini	*mini(void)
+{
+	static t_mini	var;
+
+	return (&var);
+}

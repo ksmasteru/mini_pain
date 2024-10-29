@@ -56,7 +56,7 @@ int	run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 	return (0);
 }
 
-void    _exec_cmd(int status, char *cmd, char **args, t_data *data)
+void	_exec_cmd(int status, char *cmd, char **args, t_data *data)
 {
 	if (status == 0)
 	{
@@ -73,11 +73,11 @@ void    _exec_cmd(int status, char *cmd, char **args, t_data *data)
 	exit(status);
 }
 
-int execute_cmd(int index, int len, t_data *data, t_token *token)
+int	execute_cmd(int index, int len, t_data *data, t_token *token)
 {
-	char    **args;
-	char    *cmd;
-	int     status;
+	int		status;
+	char		**args;
+	char		*cmd;
 
 	data->index = index;
 	set_exec_args(token, data, &args, &cmd);

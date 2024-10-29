@@ -107,5 +107,5 @@ char	*read_cmd(void);
 int		ft_isalpha(int c);
 int		init_check_main_cmd(t_data *data, t_token *token);
 void	print_cmd_nfound(char *cmd);
-void _exec_cmd(int status, char *cmd, char **args, t_data *data);
+void	_exec_cmd(int status, char *cmd, char **args, t_data *data);
 #endif

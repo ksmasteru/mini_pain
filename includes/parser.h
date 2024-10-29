@@ -16,7 +16,7 @@
 # include "minishell.h"
 # include "tokens.h"
 # include <stdbool.h>
-#include <stdio.h>
+# include <stdio.h>
 
 typedef struct s_stack
 {
@@ -123,5 +123,5 @@ char				*normal_word(char **str);
 char				*expand_qt_word(char *word, t_lst *env_lst);
 char				*get_quotes_buffer(char *word);
 char				*strrev(char *str);
-void 				free_t_lst(t_data *data);
+void				free_t_lst(t_data *data);
 #endif

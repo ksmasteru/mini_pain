@@ -50,10 +50,13 @@ void	free_data_variables(t_data *data, int flag)
 	status = data->env_lst->status;
 	i = 0;
 	free_t_lst(data);
-	while (data->env[i])
-		free(data->env[i++]);
-	free(data->env[i]);
-	free(data->env);
+	if (data->env)
+	{
+		while (data->env[i])
+			free(data->env[i++]);
+		free(data->env[i]);
+		free(data->env);
+	}
 	free_allocs(&g_allocs);
 	if (g_allocs)
 	{

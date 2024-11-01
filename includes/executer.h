@@ -24,8 +24,7 @@
 # include <unistd.h>
 
 char	*ft_strdup2(char *s1);
-char	**get_paths(int ac, char ***ultimate, char **envp);
-char	*get_path(char **paths, char *cmd);
+char	*get_path(t_data *data, char *cmd);
 void	free_it(char ***ultimate, char **paths, int **p, int n);
 void	free_it_2(int **p, int n);
 int		count_words(char *cmd, char sep);
@@ -33,7 +32,7 @@ char	*make_words(char *str, char sep);
 char	**ft_split(char *cmd, char sep);
 void	free_splited(char ***res, int i);
 char	***split_all(int ac, char **av);
-char	**get_envp(char **env);
+char	**get_envp(char *env);
 int		ft_strncmp_n(char *str, char *str2);
 int		ft_strlen(char *str);
 int		ft_putstr_fd(int fd, char *str);
@@ -89,7 +88,7 @@ void	free_tlst(t_lst **node);
 void	signal_ctlc_heredoc(int sig);
 int		set_up_heredoc(char **str);
 void	here_doc(t_slice *slice);
-int		check_builtin(char *line, t_data *data);
+int		check_builtin(char *line, t_data *data, char **envp);
 int		_export_out(t_data *data, t_token *token, char *line);
 bool	is_numeric(t_token *token);
 char	*get_cd_path(t_token *tokens);
@@ -108,4 +107,5 @@ int		ft_isalpha(int c);
 int		init_check_main_cmd(t_data *data, t_token *token);
 void	print_cmd_nfound(char *cmd);
 void	_exec_cmd(int status, char *cmd, char **args, t_data *data);
+char    *get_env_value(t_data *data, char *str);
 #endif

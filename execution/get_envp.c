@@ -65,24 +65,17 @@ int	ft_strncmp_n(char *str, char *str2)
 	return (-1);
 }
 
-char	**get_envp(char **env)
-{
-	int		i;
-	char	**envp;
 
-	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp(env[i], "PATH", 4) == 0)
-			break ;
-		i++;
-	}
-	if (env[i] == NULL)
-	{
-		write(1, "no available environment\n", 26);
+char	**get_envp(char *env)
+{
+	//int		i;
+	char	**envp;
+	
+	if (!env)
 		return (NULL);
-	}
-	envp = ft_split(env[i] + 5, 58);
+	//printf("env is %s\n", env);
+	//i = 0;
+	envp = ft_split(env, ':');
 	return (envp);
 }
 

@@ -91,10 +91,11 @@ void	dispatach_builtin(int n, t_data *data, char *line)
 		restore_tty(data->flag);
 }
 
-int	check_builtin(char *line, t_data *data)
+int	check_builtin(char *line, t_data *data, char **envp)
 {
 	int	n;
 
+	data->envp = envp;
 	data->words_count = 1;
 	data->tokens = lexer(line, data->env_lst);
 	if (!data->tokens || check_syntax_error(&data->tokens) < 0)

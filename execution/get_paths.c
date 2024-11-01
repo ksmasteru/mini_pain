@@ -39,40 +39,40 @@ int	is_builtin(char *line)
 	}
 	return (built_in_code2(line));
 }
-
-char	**get_paths(int ac, char ***ultimate, char **envp)
+// when path is unset it is 'set' to null its node wont be found
+char *get_env_value(t_data *data, char *str)
 {
-	int		i;
-	char	**res;
-
-	i = 0;
-	res = (char **)malloc(sizeof(char *) * (ac + 1));
-	alloc_addback(&g_allocs, res);
-	if (!res)
-		return (NULL);
-	while (i < ac)
+	t_lst	*tmp;
+	
+	tmp = data->env_lst;
+	while (tmp)
 	{
-		res[i] = get_path(envp, ultimate[i][0]);
-		i++;
+		if (tmp->value && !strcmp(tmp->data, str))
+			return (tmp->value->data);
+		tmp = tmp->next;
 	}
-	res[i] = NULL;
-	return (res);
+	return (NULL);
 }
-
-char	*get_path(char **paths, char *cmd)
+// on each loop path is passed as null to be set in here
+char	*get_path(t_data *data, char *cmd)
 {
 	int		i;
 	char	*cmd_path;
 	char	*path_jnd;
+	char	*paths;
 
+	paths = get_env_value(data, "PATH");
+	data->env = get_envp(paths);
+	if (!data->env)
+		return (ft_strdup2(cmd));
 	i = 0;
 	if (is_builtin(cmd) != 0)
 		return (ft_strdup2(cmd));
 	if (access(cmd, X_OK | F_OK) == 0)
 		return (ft_strdup2(cmd));
-	while (paths[i] != NULL && cmd[0] && cmd[0] != '/' && cmd[0] != '.')
+	while (data->env[i] != NULL && cmd[0] && cmd[0] != '/' && cmd[0] != '.')
 	{
-		path_jnd = ft_strjoin(paths[i], "/");
+		path_jnd = ft_strjoin(data->env[i], "/");
 		cmd_path = ft_strjoin(path_jnd, cmd);
 		if (access(cmd_path, X_OK | F_OK) == 0)
 			return (cmd_path);

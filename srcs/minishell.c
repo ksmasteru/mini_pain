@@ -29,9 +29,9 @@ void	set_data_variables(t_data *data, char **envp)
 	data->words_count = 1;
 	data->flag = 0;
 	data->env_lst = NULL;
-	env_to_lst(envp, data);
+	env_to_lst(envp, data);// handle if deleted ..
 	data->env_lst->status = 0;
-	data->env = get_envp(envp);
+	data->env = NULL;
 	data->mem_ref = NULL;
 	data->line = NULL;
 	data->pwd = NULL;
@@ -80,7 +80,7 @@ int	main(int ac, char **av, char **envp)
 		data.line = read_cmd();
 		if (!data.line)
 			break ;
-		if (check_builtin(data.line, &data) != 0)
+		if (check_builtin(data.line, &data, envp) != 0)
 			continue ;
 		fork_main(&data, envp);
 		free_allocs(&g_allocs);

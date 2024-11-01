@@ -64,7 +64,7 @@ bool	is_empty(char *line)
 	return (false);
 }
 
-char	*read_cmd(void)
+char	*read_cmd()
 {
 	char	*line;
 

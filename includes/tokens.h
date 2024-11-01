@@ -87,12 +87,6 @@ typedef struct s_queue
 	struct s_queue	*next;
 }					t_queue;
 
-typedef struct s_alloc
-{
-	void			*addr;
-	struct s_alloc	*next;
-}					t_alloc;
-
 typedef struct s_data
 {
 	char			*str;
@@ -101,7 +95,6 @@ typedef struct s_data
 	int				**fdx;
 	t_lst			*env_lst;
 	t_lst			*mem_ref;
-	t_alloc			*allocs;
 	int				index;
 	int				len;
 	int				pid;
@@ -118,6 +111,13 @@ typedef struct s_data
 	char			*oldpwd;
 	int				is_cmd;
 }					t_data;
+
+typedef struct s_alloc
+{
+	void			*addr;
+	t_data			*data;
+	struct s_alloc	*next;
+}					t_alloc;
 
 t_token				*make_new_node(t_token_type type, char *start,
 						size_t length);

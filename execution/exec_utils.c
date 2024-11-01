@@ -96,22 +96,26 @@ char	**get_word_args(t_token *token)
 	args[i] = NULL;
 	return (args);
 }
-
+// should clear up data as it exits.
 int	check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 {
+	int status;
+
+	status = 0;
 	if (n == 1)
-		data->env_lst->status = export(data, token->up);
+		status = export(data, token->up);
 	if (n == 2)
-		data->env_lst->status = unset(data, token);
+		status = unset(data, token);
 	if (n == 3)
-		data->env_lst->status = show_env(data, 0);
+		status = show_env(data, 0);
 	if (n == 4)
-		data->env_lst->status = pwd(line, token, data);
+		status = pwd(line, token, data);
 	if (n == 5)
-		data->env_lst->status = cd(line, data, token);
+		status = cd(line, data, token);
 	if (n == 6)
-		data->env_lst->status = ft_echo2(data, line, token);
+		status = ft_echo2(data, line, token);
 	if (n == 7)
-		data->env_lst->status = ft_exit(data, line, token);
-	return (data->env_lst->status);
+		status = ft_exit(data, line, token);
+	free_data_variables(data, 1);
+	exit(status);
 }

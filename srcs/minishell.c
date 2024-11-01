@@ -34,10 +34,11 @@ void	set_data_variables(t_data *data, char **envp)
 	data->env = get_envp(envp);
 	data->mem_ref = NULL;
 	data->line = NULL;
-	data->allocs = NULL;
 	data->pwd = NULL;
 	data->oldpwd = NULL;
 	data->is_cmd = 0;
+	ft_strdup2("LOL");
+	g_allocs->data = data;
 }
 
 void	fork_main(t_data *data, char **envp)

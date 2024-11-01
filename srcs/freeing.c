@@ -54,6 +54,12 @@ void	free_data_variables(t_data *data, int flag)
 		free(data->env[i++]);
 	free(data->env[i]);
 	free(data->env);
+	free_allocs(&g_allocs);
+	if (g_allocs)
+	{
+		free(g_allocs->addr);
+		free(g_allocs);
+	}
 	if (flag == 0)
 		exit_empty(status);
 }
@@ -82,7 +88,10 @@ void	free_allocs(t_alloc **allocs)
 	t_alloc	*tmp;
 	t_alloc	*holder;
 
+	if (!allocs || !*allocs)
+		return ;
 	tmp = *allocs;
+	tmp = tmp->next;
 	while (tmp)
 	{
 		holder = tmp->next;
@@ -90,5 +99,6 @@ void	free_allocs(t_alloc **allocs)
 		free(tmp);
 		tmp = holder;
 	}
-	*allocs = NULL;
+	if (*allocs)
+		(*allocs)->next = NULL;
 }

@@ -103,7 +103,7 @@ void	signal_ctlc_heredoc(int sig);
 void	signal_ctlc(int sig);
 void	restore_tty(int flag);
 int		is_builtin(char *line);
-char	*read_cmd(void);
+char	*read_cmd();
 int		ft_isalpha(int c);
 int		init_check_main_cmd(t_data *data, t_token *token);
 void	print_cmd_nfound(char *cmd);

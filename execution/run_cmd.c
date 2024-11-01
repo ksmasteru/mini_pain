@@ -50,7 +50,7 @@ int	run_cmd_main(char **args, char *cmd, t_token *token, t_data *data)
 		signal(SIGQUIT, SIG_DFL);
 		status = init_check_main_cmd(data, token);
 		if (built_in_code(cmd) != 0)
-			exit (check_builtin_multiple(cmd, data, token, built_in_code(cmd)));
+			check_builtin_multiple(cmd, data, token, built_in_code(cmd));
 		_exec_cmd(status, cmd, args, data);
 	}
 	return (0);
@@ -90,7 +90,7 @@ int	execute_cmd(int index, int len, t_data *data, t_token *token)
 		signal(SIGQUIT, SIG_DFL);
 		status = init_exec_check(token, data, index);
 		if (built_in_code(cmd) != 0)
-			exit (check_builtin_multiple(cmd, data, token, built_in_code(cmd)));
+			check_builtin_multiple(cmd, data, token, built_in_code(cmd));
 		_exec_cmd(status, cmd, args, data);
 	}
 	return (0);

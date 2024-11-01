@@ -69,7 +69,6 @@ int	ft_exit(t_data *data, char *line, t_token *token)
 		print_error("minishell ", "exit", NULL, "too many arguments");
 		return (EXIT_FAILURE);
 	}
-	free_allocs(&g_allocs);
 	free_data_variables(data, 1);
 	exit(code);
 }

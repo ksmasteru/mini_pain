@@ -29,6 +29,15 @@ int	ft_strlen(char *s1)
 	return (i);
 }
 
+int get_cd_paths(t_data *data, t_token *tokens, char **path, char **home)
+{
+	if (tokens->up && tokens->up->location.location[0] == 0)
+		return (1);
+	*path = get_cd_path(tokens);
+	*home = get_home_path(data, *path);
+	return (0);
+}
+
 char	*get_home_path(t_data *data, char *path)
 {
 	t_lst	*tmp;
@@ -49,10 +58,7 @@ char	*get_home_path(t_data *data, char *path)
 	if (found == 1)
 		return (tmp->value->data);
 	else
-	{
-			//print_error("minishell", "cd", NULL, "HOME not set");
 		return (NULL);
-	}
 }
 
 bool	is_special(char *path)

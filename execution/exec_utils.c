@@ -96,7 +96,7 @@ char	**get_word_args(t_token *token)
 	args[i] = NULL;
 	return (args);
 }
-// should clear up data as it exits.
+
 int	check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 {
 	int status;

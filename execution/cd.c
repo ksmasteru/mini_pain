@@ -58,14 +58,6 @@ char	*get_cd_path(t_token *tokens)
 	return (whole_path);
 }
 
-int get_cd_paths(t_data *data, t_token *tokens, char **path, char **home)
-{
-	if (tokens->up && tokens->up->location.location[0] == 0)
-		return (1);
-	*path = get_cd_path(tokens);
-	*home = get_home_path(data, *path);
-	return (0);
-}
 int	cd(char *path, t_data *data, t_token *tokens)
 {
 	char	*home;

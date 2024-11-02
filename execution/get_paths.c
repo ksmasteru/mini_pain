@@ -39,7 +39,7 @@ int	is_builtin(char *line)
 	}
 	return (built_in_code2(line));
 }
-// when path is unset it is 'set' to null its node wont be found
+
 char *get_env_value(t_data *data, char *str)
 {
 	t_lst	*tmp;
@@ -53,7 +53,6 @@ char *get_env_value(t_data *data, char *str)
 	}
 	return (NULL);
 }
-// on each loop path is passed as null to be set in here
 char	*get_path(t_data *data, char *cmd)
 {
 	int		i;
@@ -61,7 +60,6 @@ char	*get_path(t_data *data, char *cmd)
 	char	*path_jnd;
 	char	*paths;
 
-	// paths dhoulnt be freed/
 	paths = get_env_value(data, "PATH");
 	data->env = get_envp(paths);
 	if (!data->env)

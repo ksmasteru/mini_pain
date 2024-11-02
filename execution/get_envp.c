@@ -68,7 +68,6 @@ int	ft_strncmp_n(char *str, char *str2)
 
 char	**get_envp(char *env)
 {
-	//int		i;
 	char	**envp;
 	
 	if (!env)

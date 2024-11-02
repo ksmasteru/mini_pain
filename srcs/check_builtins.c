@@ -43,7 +43,7 @@ int	built_in_code2(char *line)
 int	built_in_code(char *line)
 {
 	if (!line)
-		exit(0); // free data variable ?
+		exit(0);
 	if (ft_strlen(line) >= 6)
 	{
 		if (ft_strncmp("export", line, 6) == 0 && (ft_strchr(" \v\t\n", line[6])

@@ -29,11 +29,12 @@ int	ft_strlen(char *s1)
 	return (i);
 }
 
-char	*get_home_path(t_data *data)
+char	*get_home_path(t_data *data, char *path)
 {
 	t_lst	*tmp;
 	int		found;
 
+	(void)path;
 	tmp = data->env_lst;
 	found = 0;
 	while (tmp)
@@ -49,7 +50,7 @@ char	*get_home_path(t_data *data)
 		return (tmp->value->data);
 	else
 	{
-		print_error("minishell", "cd", NULL, "HOME not set");
+			//print_error("minishell", "cd", NULL, "HOME not set");
 		return (NULL);
 	}
 }

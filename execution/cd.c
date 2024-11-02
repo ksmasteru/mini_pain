@@ -58,6 +58,14 @@ char	*get_cd_path(t_token *tokens)
 	return (whole_path);
 }
 
+int get_cd_paths(t_data *data, t_token *tokens, char **path, char **home)
+{
+	if (tokens->up && tokens->up->location.location[0] == 0)
+		return (1);
+	*path = get_cd_path(tokens);
+	*home = get_home_path(data, *path);
+	return (0);
+}
 int	cd(char *path, t_data *data, t_token *tokens)
 {
 	char	*home;
@@ -65,12 +73,12 @@ int	cd(char *path, t_data *data, t_token *tokens)
 
 	if (getcwd(oldpwd, PATH_MAX))
 		data->oldpwd = oldpwd;
-	path = get_cd_path(tokens);
-	home = get_home_path(data);
+	if (get_cd_paths(data, tokens, &path, &home) != 0)
+		return (1);
 	if (!path || is_empty(path) || is_special(path))
 	{
 		if (!home || chdir(home) < 0)
-			return (cd_error(home, tokens));
+			return (cd_error(home, path, tokens));
 	}
 	else
 	{
@@ -82,19 +90,23 @@ int	cd(char *path, t_data *data, t_token *tokens)
 		if (tokens->up->location.location[0] != 0)
 			tokens->up->location.location[tokens->up->location.lenght] = 0;
 		if (chdir(tokens->up->location.location) < 0)
-			return (cd_error(path, tokens));
+			return (cd_error(home, path, tokens));
 	}
 	return (update_path_var(data, oldpwd));
 }
 
-int	cd_error(char *path, t_token *tokens)
+int	cd_error(char *home, char *path, t_token *tokens)
 {
 	int	i;
 
 	(void)(tokens);
 	i = 0;
 	if (!path)
+	{
+		if (!home)
+			print_error("minishell", "cd", NULL, "HOME not set");
 		return (1);
+	}
 	write(2, "cd: ", 5);
 	while (path[i])
 	{

@@ -86,7 +86,7 @@ t_lst	*get_pair(char *str)
 	return (pair);
 }
 
-void	env_to_lst(char **env, t_data *data)
+int	env_to_lst(char **env, t_data *data)
 {
 	int		i;
 	t_lst	*pair;
@@ -98,4 +98,5 @@ void	env_to_lst(char **env, t_data *data)
 		add_val_to_env(pair, data);
 		i++;
 	}
+	return (i);
 }

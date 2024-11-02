@@ -73,9 +73,8 @@ char	**get_envp(char *env)
 	
 	if (!env)
 		return (NULL);
-	//printf("env is %s\n", env);
-	//i = 0;
 	envp = ft_split(env, ':');
+	split_add_to_allocs(envp);
 	return (envp);
 }
 

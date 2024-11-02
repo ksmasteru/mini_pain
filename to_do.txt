@@ -1,3 +1,9 @@
 unset leaks
 
 when you unset you do it from YOUR VARIABLES STORED IN DATA.
+
+768 byte(s) leaked in 35 allocation(s).
+
+leaks when unset.
+
+env printing!!! writing garbage value.

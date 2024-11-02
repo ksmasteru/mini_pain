@@ -61,6 +61,7 @@ char	*get_path(t_data *data, char *cmd)
 	char	*path_jnd;
 	char	*paths;
 
+	// paths dhoulnt be freed/
 	paths = get_env_value(data, "PATH");
 	data->env = get_envp(paths);
 	if (!data->env)

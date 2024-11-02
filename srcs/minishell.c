@@ -17,11 +17,29 @@
 #include "../includes/tokens.h"
 #include "sys/wait.h"
 #include <stdbool.h>
+#include <limits.h>
 
 t_alloc	*g_allocs = NULL;
 
 int		built_in(int op, t_data *data, t_token *token);
 int		unset(t_data *data, t_token *token);
+
+
+void	set_custom_env(t_data *data)
+{
+	t_lst	*head;
+	char	buffer[1024];
+	char	*pwd;
+
+	pwd = getcwd(buffer, 1024);
+	head = new_list("OLDPWD", 7);
+	head->value = NULL;
+	head->next = new_list("PWD", 4);
+	head->next->value = new_list(pwd, ft_strlen(pwd));
+	head->next->next = new_list("SHLVL", 6);
+	head->next->next->value = new_list("1", 2);
+	data->env_lst = head;
+}
 
 void	set_data_variables(t_data *data, char **envp)
 {
@@ -29,7 +47,8 @@ void	set_data_variables(t_data *data, char **envp)
 	data->words_count = 1;
 	data->flag = 0;
 	data->env_lst = NULL;
-	env_to_lst(envp, data);// handle if deleted ..
+	if (env_to_lst(envp, data) == 0)
+		set_custom_env(data);
 	data->env_lst->status = 0;
 	data->env = NULL;
 	data->mem_ref = NULL;
@@ -88,3 +107,4 @@ int	main(int ac, char **av, char **envp)
 	free_data_variables(&data, 0);
 	return (0);
 }
+

@@ -66,7 +66,7 @@ void				merge_the_words(t_token **words_list, t_token *new_word);
 char				*ft_strnchrs(char *str, int c, size_t len);
 size_t				make_word_with_quotes(t_token **head, char *start);
 char				*clean_quotes_from_word(char *res, int j, int c);
-void				env_to_lst(char **env, t_data *data);
+int					env_to_lst(char **env, t_data *data);
 void				lst_addback(t_lst **head, t_lst *new_lst);
 t_lst				*new_list(char *str, int len);
 int					export(t_data *data, t_token *token);
@@ -123,5 +123,5 @@ char				*normal_word(char **str);
 char				*expand_qt_word(char *word, t_lst *env_lst);
 char				*get_quotes_buffer(char *word);
 char				*strrev(char *str);
-void				free_t_lst(t_data *data);
+void				free_t_lst(t_lst *head);
 #endif

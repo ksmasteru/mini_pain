@@ -20,43 +20,37 @@
 
 extern t_alloc	*g_allocs;
 
-void	free_t_lst(t_data *data)
+void free_tlst_node(t_lst *node)
+{
+	if (node->data)
+		free(node->data);
+	if (node->value)
+	{
+		if (node->value->data)
+			free(node->value->data);
+		free(node->value);
+	}
+	free(node);
+}
+
+void	free_t_lst(t_lst *head)
 {
 	t_lst	*holder;
-	t_lst	*tmp;
 
-	tmp = data->env_lst;
-	while (tmp)
+	while (head)
 	{
-		holder = tmp->next;
-		if (tmp->data)
-			free(tmp->data);
-		if (tmp->value)
-		{
-			if (tmp->value->data)
-				free(tmp->value->data);
-			free(tmp->value);
-		}
-		free(tmp);
-		tmp = holder;
+		holder = head->next;
+		free_tlst_node(head);
+		head = holder;
 	}
 }
 
 void	free_data_variables(t_data *data, int flag)
 {
-	int		i;
 	int		status;
 
 	status = data->env_lst->status;
-	i = 0;
-	free_t_lst(data);
-	if (data->env)
-	{
-		while (data->env[i])
-			free(data->env[i++]);
-		free(data->env[i]);
-		free(data->env);
-	}
+	free_t_lst(data->env_lst);
 	free_allocs(&g_allocs);
 	if (g_allocs)
 	{

@@ -67,9 +67,7 @@ void	ft_lstdelete(t_lst **head, t_lst *to_delete)
 	if (!tmp)
 		return ;
 	tmp->next = holder;
-	if (to_delete->data)
-		free(to_delete->data);
-	free(to_delete);
+	free_tlst_node(to_delete);
 }
 
 int	unset(t_data *data, t_token *token)

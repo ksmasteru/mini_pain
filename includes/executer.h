@@ -108,4 +108,5 @@ int		init_check_main_cmd(t_data *data, t_token *token);
 void	print_cmd_nfound(char *cmd);
 void	_exec_cmd(int status, char *cmd, char **args, t_data *data);
 char    *get_env_value(t_data *data, char *str);
+void    free_tlst_node(t_lst *node);
 #endif

@@ -39,24 +39,6 @@ bool invalid_number(char *str)
 	return (false);
 }
 
-void increment_shellvl(t_data *data)
-{
-	int shellvl;
-	char *lvl;
-	t_lst *pair;
-
-	lvl = get_env_value(data, "SHLVL");
-	if (!lvl || lvl[0] == 0)
-		return ;
-	if (invalid_number(lvl))
-		return ;
-	shellvl = ft_atoi(lvl) + 1;
-	printf("new shell lvl is %d\n", shellvl);
-	pair =  new_list("SHLVL", 6);
-	pair->value = new_list(ft_itoa(shellvl), ft_strlen(ft_itoa(shellvl)));
-	add_val_to_env(pair, data);
-}
-
 void	set_custom_env(t_data *data)
 {
 	t_lst	*head;
@@ -82,7 +64,6 @@ void	set_data_variables(t_data *data, char **envp)
 	if (env_to_lst(envp, data) == 0)
 		set_custom_env(data);
 	data->env_lst->status = 0;
-	increment_shellvl(data);
 	data->env = NULL;
 	data->mem_ref = NULL;
 	data->line = NULL;

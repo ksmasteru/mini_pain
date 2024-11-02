@@ -109,4 +109,6 @@ void	print_cmd_nfound(char *cmd);
 void	_exec_cmd(int status, char *cmd, char **args, t_data *data);
 char    *get_env_value(t_data *data, char *str);
 void    free_tlst_node(t_lst *node);
+void    increment_shellvl(t_data *data);
+bool    invalid_number(char *str);
 #endif

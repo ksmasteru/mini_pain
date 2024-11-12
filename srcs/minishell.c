@@ -83,21 +83,6 @@ void	fork_main(t_data *data, char **envp)
 	data->line = NULL;
 }
 
-void	*_alloc(size_t size, t_alloc **g_allocs)
-{
-	void	*new_add;
-
-	new_add = malloc(size);
-	alloc_addback(g_allocs, new_add);
-	return (new_add);
-}
-
-void	exit_empty(int status)
-{
-	write(2, "exit\n", 6);
-	exit(status);
-}
-
 int	main(int ac, char **av, char **envp)
 {
 	t_data	data;

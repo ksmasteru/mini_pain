@@ -121,7 +121,6 @@ char	*expand_qt_word(char *word, t_lst *env_lst)
 	char	*expanded_word;
 	int		i;
 	char	*buffer;
-	char	*start;
 	char	*tmp_word;
 
 	buffer = NULL;
@@ -134,8 +133,7 @@ char	*expand_qt_word(char *word, t_lst *env_lst)
 	while (tmp_word[i] && tmp_word[i] != 34 && tmp_word[i] != 39)
 		i++;
 	tmp_word[i] = '\0';
-	start = tmp_word;
-	expanded_word = expand_word(&tmp_word, start, env_lst, 34);
+	expanded_word = expand_quoted_word(tmp_word, env_lst);
 	if (ft_strlen(buffer) != 0)
 	{
 		expanded_word = ft_strjoin(buffer, expanded_word);

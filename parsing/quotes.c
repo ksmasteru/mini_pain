@@ -39,6 +39,26 @@ char	*normal_word(char **str)
 	}
 	return (word);
 }
+// "$HOME $HOME" "$HOME hi"
+/*char	*split_expand_word(char	*word)
+{
+	char	*res;
+	char	**splitted_words;
+	int		i;
+	char	*whole_word;
+
+	whole_word = NULL;
+	i = 0;
+	splitted_words = ft_split(word, 32);
+	split_add_to_allocs(splitted_words);
+	while (splitted_words[i])
+	{
+		if (ft_strchr(splitted_words[i], '$'))
+		{
+			res = ft_strjoin(whole_word, splitted_words[i]);
+		}
+	}
+}*/
 
 char	*make_quoted_word(char **str, int c, t_lst *env_lst, t_token *head)
 {
@@ -103,7 +123,7 @@ char	*qouted_word(char **str, char *start, t_lst *env_lst, t_token *head)
 	return (complete_word);
 }
 
-char	*expand_quoted_word(char *str, t_lst *env_lst) /*channged*/
+char	*expand_quoted_word(char *str, t_lst *env_lst)
 {
 	char	*whole_word;
 

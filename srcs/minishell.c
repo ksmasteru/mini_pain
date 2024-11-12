@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:25:25 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/25 01:30:52 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:06:37 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ t_alloc	*g_allocs = NULL;
 int		built_in(int op, t_data *data, t_token *token);
 int		unset(t_data *data, t_token *token);
 
-
-bool invalid_number(char *str)
+bool	invalid_number(char *str)
 {
 	int		i;
 

@@ -6,7 +6,7 @@
 /*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:46:17 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:46:18 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:00:18 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	is_builtin(char *line)
 	return (built_in_code2(line));
 }
 
-char *get_env_value(t_data *data, char *str)
+char	*get_env_value(t_data *data, char *str)
 {
 	t_lst	*tmp;
-	
+
 	tmp = data->env_lst;
 	while (tmp)
 	{
@@ -53,6 +53,7 @@ char *get_env_value(t_data *data, char *str)
 	}
 	return (NULL);
 }
+
 char	*get_path(t_data *data, char *cmd)
 {
 	int		i;

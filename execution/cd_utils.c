@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:20:13 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/25 00:23:09 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:55:05 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_strlen(char *s1)
 	return (i);
 }
 
-int get_cd_paths(t_data *data, t_token *tokens, char **path, char **home)
+int	get_cd_paths(t_data *data, t_token *tokens, char **path, char **home)
 {
 	if (tokens->up && tokens->up->location.location[0] == 0)
 		return (1);

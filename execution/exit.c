@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:32:15 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/25 01:08:06 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:03:33 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,3 @@ void	exit_empty(int status)
 	write(2, "exit\n", 6);
 	exit(status);
 }
-

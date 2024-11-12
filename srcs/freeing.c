@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 22:24:04 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/13 22:24:14 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:06:13 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 extern t_alloc	*g_allocs;
 
-void free_tlst_node(t_lst *node)
+void	free_tlst_node(t_lst *node)
 {
 	if (node->data)
 		free(node->data);

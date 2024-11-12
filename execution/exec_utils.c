@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:25:58 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/25 01:07:11 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/11/12 20:57:27 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	**get_word_args(t_token *token)
 
 int	check_builtin_multiple(char *line, t_data *data, t_token *token, int n)
 {
-	int status;
+	int	status;
 
 	status = 0;
 	if (n == 1)

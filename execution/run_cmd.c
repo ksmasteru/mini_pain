@@ -6,7 +6,7 @@
 /*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 21:00:56 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 21:00:58 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:04:32 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ void	_exec_cmd(int status, char *cmd, char **args, t_data *data)
 
 int	execute_cmd(int index, int len, t_data *data, t_token *token)
 {
-	int		status;
-	char		**args;
-	char		*cmd;
+	int			status;
+	char			**args;
+	char			*cmd;
 
 	data->index = index;
 	set_exec_args(token, data, &args, &cmd);

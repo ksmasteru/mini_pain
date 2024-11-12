@@ -6,7 +6,7 @@
 /*   By: aech-chi <aech-chi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 01:31:02 by aech-chi          #+#    #+#             */
-/*   Updated: 2024/10/25 01:31:16 by aech-chi         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:07:36 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	is_empty(char *line)
 	return (false);
 }
 
-char	*read_cmd()
+char	*read_cmd(void)
 {
 	char	*line;
 

@@ -6,7 +6,7 @@
 /*   By: hes-saqu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/13 20:44:30 by hes-saqu          #+#    #+#             */
-/*   Updated: 2024/10/13 20:44:32 by hes-saqu         ###   ########.fr       */
+/*   Updated: 2024/11/12 21:03:55 by hes-saqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	ft_strncmp_n(char *str, char *str2)
 		return (0);
 	return (-1);
 }
-
 
 char	**get_envp(char *env)
 {

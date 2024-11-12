@@ -94,7 +94,7 @@ int	show_env(t_data *data, int is_export)
 			ft_putstr(1, tmp->data);
 			write(1, "=", 1);
 			ft_putstr(1, tmp->value->data);
-			write(1, "\n", 2);
+			write(1, "\n", 1);
 		}
 		tmp = tmp->next;
 	}

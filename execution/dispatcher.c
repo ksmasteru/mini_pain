@@ -62,7 +62,7 @@ int	parse_cmd(char *line, char **envp, t_data *data)
 	if (WIFSIGNALED(status))
 	{
 		if (WTERMSIG(status) == 3)
-			write(2, "Quit: 3\n", 9);
+			write(2, "Quit (core dumped)\n", 19);
 		else if (WTERMSIG(status) == 2)
 			write(2, "\n", 2);
 		status = 128 + WTERMSIG(status);

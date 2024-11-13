@@ -41,7 +41,7 @@ int	print_error(char *s1, char *s2, char *s3, char *message)
 			ft_putstr_fd(2, ": ");
 		ft_putstr_fd(2, message);
 	}
-	write(2, "\n", 2);
+	write(2, "\n", 1);
 	return (-1);
 }
 
@@ -54,7 +54,10 @@ int	print_error_errno(char *s1, char *s2, char *s3)
 
 void	print_cmd_nfound(char *cmd)
 {
-	ft_putstr_fd(2, "minishell: ");
-	ft_putstr_fd(2, cmd);
-	ft_putstr_fd(2, ": command not found\n");
+	if (cmd && cmd[0] != 0)
+	{
+		ft_putstr_fd(2, "minishell: ");
+		ft_putstr_fd(2, cmd);
+		ft_putstr_fd(2, ": command not found\n");
+	}
 }

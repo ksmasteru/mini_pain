@@ -9,3 +9,6 @@ leaks when unset.
 env printing!!! writing garbage value.
 
 /ls : leaks
+
+write something the press ctrl+c
+

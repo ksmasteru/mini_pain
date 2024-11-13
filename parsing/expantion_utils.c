@@ -92,7 +92,6 @@ char	*after_dollar_word(char **str, char *whole_word, t_lst *env_lst, int c)
 			continue ;
 		}
 		whole_word = ft_strcat(whole_word, *((*str)++));
-		//*str = *str + 1;
 	}
 	return (whole_word);
 }

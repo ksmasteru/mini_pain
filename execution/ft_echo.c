@@ -72,6 +72,8 @@ int	ft_echo2(t_data *data, char *line, t_token *token)
 			tmp = tmp->up;
 		}
 	}
+	else
+		write (1, "\n", 1);
 	return (0);
 }
 

@@ -112,4 +112,5 @@ char    *get_env_value(t_data *data, char *str);
 void    free_tlst_node(t_lst *node);
 void    increment_shellvl(t_data *data);
 bool    invalid_number(char *str);
+int     ft_isalnum(int c);
 #endif

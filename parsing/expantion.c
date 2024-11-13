@@ -79,9 +79,12 @@ int	expantion_check_quotes(char **str, t_lst *env_lst, char **expanded_word)
 	}
 	else
 	{
-		while (*(*str + i) != 0 && *(*str + i) != '$' && *(*str + i) != 34
+		/*while (*(*str + i) != 0 && *(*str + i) != '$' && *(*str + i) != 34
 			&& *(*str + i) != 39 && *(*str + i) != 32 && !(*(*str + i) >= 9
 				&& *(*str + i) <= 13) && !(strchr("|><", *(*str + i))))
+			i++;*/
+		// 0 dollar quotes spaces :: allowed nubemers and char
+		while (*(*str + i) && ft_isalnum(*(*str + i)))
 			i++;
 	}
 	return (i);

@@ -91,7 +91,8 @@ char	*after_dollar_word(char **str, char *whole_word, t_lst *env_lst, int c)
 			whole_word = join_and_free(whole_word, expanded_word);
 			continue ;
 		}
-		*str = *str + 1;
+		whole_word = ft_strcat(whole_word, *((*str)++));
+		//*str = *str + 1;
 	}
 	return (whole_word);
 }
@@ -104,9 +105,9 @@ char	*expand_status_variable(char **str, int status)
 
 	i = 0;
 	*str = *str + 2;
-	while (*(*str + i) != 0 && *(*str + i) != '$' && *(*str + i) != 34 && *(*str
-			+ i) != 39 && !(*(*str + i) >= 9 && *(*str + i) <= 13))
-		i++;
+	while (*(*str + i) && ft_isalnum(*(*str + i)))
+			i++;
+
 	if (i == 0)
 		return (ft_itoa(status));
 	c = *(*str + i);

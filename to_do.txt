@@ -7,3 +7,5 @@ when you unset you do it from YOUR VARIABLES STORED IN DATA.
 leaks when unset.
 
 env printing!!! writing garbage value.
+
+/ls : leaks

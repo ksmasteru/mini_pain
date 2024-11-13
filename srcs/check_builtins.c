@@ -114,3 +114,11 @@ int	check_builtin(char *line, t_data *data, char **envp)
 	else
 		return (0);
 }
+int	ft_isalnum(int c)
+{
+	if (ft_isalpha(c))
+		return (1);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}

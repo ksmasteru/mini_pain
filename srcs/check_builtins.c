@@ -114,6 +114,7 @@ int	check_builtin(char *line, t_data *data, char **envp)
 	else
 		return (0);
 }
+
 int	ft_isalnum(int c)
 {
 	if (ft_isalpha(c))

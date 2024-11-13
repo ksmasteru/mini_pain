@@ -68,7 +68,7 @@ int	ft_strncmp_n(char *str, char *str2)
 char	**get_envp(char *env)
 {
 	char	**envp;
-	
+
 	if (!env)
 		return (NULL);
 	envp = ft_split(env, ':');

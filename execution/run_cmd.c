@@ -75,7 +75,7 @@ void	_exec_cmd(int status, char *cmd, char **args, t_data *data)
 
 int	execute_cmd(int index, int len, t_data *data, t_token *token)
 {
-	int			status;
+	int				status;
 	char			**args;
 	char			*cmd;
 

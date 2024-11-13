@@ -105,8 +105,7 @@ char	*expand_status_variable(char **str, int status)
 	i = 0;
 	*str = *str + 2;
 	while (*(*str + i) && ft_isalnum(*(*str + i)))
-			i++;
-
+		i++;
 	if (i == 0)
 		return (ft_itoa(status));
 	c = *(*str + i);

@@ -57,13 +57,13 @@ void	here_doc(t_slice *slice)
 		return ;
 	if (slice->location[0] != 0)
 		slice->location[slice->lenght] = '\0';
-	while (read_str && strcmp(read_str, slice->location))
+	while (read_str && ft_strcmp(read_str, slice->location))
 	{
 		read_str = readline("> ");
 		if (!read_str)
 			break ;
 		alloc_addback(&g_allocs, read_str);
-		if (strcmp(read_str, slice->location) != 0)
+		if (ft_strcmp(read_str, slice->location) != 0)
 		{
 			write(fd, read_str, ft_strlen(read_str));
 			write(fd, "\n", 2);

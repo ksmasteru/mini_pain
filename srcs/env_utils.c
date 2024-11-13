@@ -80,7 +80,7 @@ int	swap_if_key(t_lst **head, t_lst *pair)
 	tmp = *head;
 	while (tmp)
 	{
-		if (strcmp(tmp->data, pair->data) == 0)
+		if (ft_strcmp(tmp->data, pair->data) == 0)
 		{
 			if (pair->value)
 			{

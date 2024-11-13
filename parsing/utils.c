@@ -24,59 +24,6 @@ void	pop_error(int exit_code, char *str)
 	ft_putstr_fd(2, str);
 }
 
-void	free_ls(t_token **token, int direction)
-{
-	t_token	*tmp;
-	t_token	*holder;
-
-	tmp = *token;
-	while (tmp)
-	{
-		if (direction == 1)
-			holder = tmp->next;
-		else if (direction == 2)
-			holder = tmp->up;
-		else
-			holder = tmp->down;
-		if (tmp->location.is_malloced)
-		{
-			printf("trying to free %s\n", tmp->location.location);
-			free(tmp->location.location);
-		}
-		free(tmp);
-		tmp = holder;
-	}
-	*token = NULL;
-}
-
-void	free_ls_2(t_token *token, int direction)
-{
-	t_token	*tmp;
-	t_token	*holder;
-
-	tmp = token;
-	while (tmp)
-	{
-		if (direction == 1)
-			holder = tmp->up;
-		else if (direction == 2)
-			holder = tmp->down;
-		if (tmp->location.is_malloced)
-			free(tmp->location.location);
-		free(tmp);
-		tmp = holder;
-	}
-}
-
-void	free_tokens(t_tree *tree)
-{
-	if (tree->token)
-	{
-		free_ls(&(tree->token->up), 2);
-		free_ls(&(tree->token->down), 3);
-	}
-}
-
 void	_free_data(t_data *data)
 {
 	int	i;

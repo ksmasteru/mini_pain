@@ -40,7 +40,7 @@ char	*expand_word(char **str, char *start, t_lst *env_lst,
 		expanded_word = expantion(str, env_lst);
 	whole_word = join_and_free(before_word, expanded_word);
 	if (**str != 0 && **str != 32 && !(**str >= 9 && **str <= 13)
-		&& !(strchr("|<>", **str)))
+		&& !(ft_strchr("|<>", **str)))
 		return (after_dollar_word(str, whole_word, env_lst, 0));
 	return (whole_word);
 }
@@ -121,7 +121,7 @@ char	*get_expanded_word(char *expand_word, t_lst *env_lst)
 	expanded_word = NULL;
 	while (env_lst)
 	{
-		if (strcmp(env_lst->data, expand_word) == 0)
+		if (ft_strcmp(env_lst->data, expand_word) == 0)
 		{
 			if (env_lst->value)
 			{

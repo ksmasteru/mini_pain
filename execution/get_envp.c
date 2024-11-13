@@ -78,7 +78,7 @@ char	**get_envp(char *env)
 
 int	_export_out(t_data *data, t_token *token, char *line)
 {
-	if (token->up == NULL && (strchr(line, 34) || strchr(line, 39)))
+	if (token->up == NULL && (ft_strchr(line, 34) || ft_strchr(line, 39)))
 	{
 		write(2, "minishell: export: `': not a valid identifier\n", 47);
 		return (1);

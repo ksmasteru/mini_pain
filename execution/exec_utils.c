@@ -47,7 +47,7 @@ int	init_exec_check(t_token *head, t_data *data, int index)
 	if (head->type == WORD)
 		data->flag = manage_redirections(head->down, data);
 	else if (head->type == REIDRECTION)
-		data->flag = manage_redirections(head->down, data);
+		data->flag = manage_redirections(head, data);
 	if (data->is_cmd == -1)
 	{
 		close_all_pipes(data->fdx, data->words_count);

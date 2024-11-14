@@ -15,6 +15,8 @@
 #include "../includes/parser.h"
 #include "../includes/tokens.h"
 
+int	ft_strcmp(char *s1, char *s2);
+
 bool	is_nvalid_arg(t_slice *slice)
 {
 	if ((slice->location)[0] == '=' || slice->location[0] == 0

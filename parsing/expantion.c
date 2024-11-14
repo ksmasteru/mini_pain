@@ -18,6 +18,8 @@
 
 extern t_alloc	*g_allocs;
 
+int	ft_strcmp(char *s1, char *s2);
+
 char	*expand_word(char **str, char *start, t_lst *env_lst,
 		char closing_quotes)
 {

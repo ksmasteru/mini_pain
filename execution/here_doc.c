@@ -21,6 +21,8 @@
 
 extern t_alloc	*g_allocs;
 
+int	ft_strcmp(char *s1, char *s2);
+
 int	set_up_heredoc(char **str)
 {
 	int	fd;

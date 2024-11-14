@@ -74,25 +74,24 @@ int	unset(t_data *data, t_token *token)
 {
 	t_lst	*tmp;
 	int		code;
+	t_lst	*holder;
 
 	if (token->up == NULL)
 		return (0);
-	tmp = data->env_lst;
 	token = token->up;
 	while (token)
 	{
+		tmp = data->env_lst;
 		code = 0;
 		if (token->location.location[0] == 0 || not_valid_variable(token))
 			code = unset_error(token);
 		while (tmp && code != 1)
 		{
+			holder = tmp->next;
 			if (ft_strncmp(tmp->data, token->location.location,
 					token->location.lenght) == 0)
-			{
 				ft_lstdelete(&(data->env_lst), tmp);
-				return (0);
-			}
-			tmp = tmp->next;
+			tmp = holder;
 		}
 		token = token->up;
 	}
